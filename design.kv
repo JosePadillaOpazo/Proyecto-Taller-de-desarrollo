@@ -1,0 +1,177 @@
+#: import RiseInTransition kivy.uix.screenmanager.RiseInTransition
+#: import SlideTransition kivy.uix.screenmanager.SlideTransition
+
+<ui>:
+    MDScreen: #Pantalla
+        name: 'screen_principal'
+        MDBoxLayout: #Capa de toda la pantalla
+            orientation: 'vertical'
+            
+            MDBoxLayout: #Encabezao de la pantalla
+                orientation: 'horizontal'
+                size_hint: 1,.25
+
+                MDGridLayout:
+                    cols: 3
+                    MDBoxLayout:
+                        size_hint: .27, 1
+
+                    
+                    FitImage:
+                        size_hint: .46,1
+                        fit_mode: "contain"
+                        source: "Icon/logo_Citec.png"
+                    
+                    MDBoxLayout:
+                        size_hint: .27, 1
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                        MDSwitch:
+                            pos_hint: {"center_x": .5, "center_y": .5}
+                            on_active:
+                                app.cambiar_fondo(*args)
+
+
+            MDAnchorLayout:
+                anchor_x: 'center'
+                anchor_y: 'center'
+                MDRectangleFlatIconButton:
+                    icon: "file-plus-outline"
+                    text: "Iniciar Inspeccion"
+                    theme_text_color: "Custom"
+                    text_color: "white"
+                    line_color: "orange"
+                    theme_icon_color: "Custom"
+                    icon_color: "orange"
+                    on_release:
+                        app.root.transition = SlideTransition(direction = 'left')
+                        root.current = 'screen_info_general'
+                        app.abrir_plantilla_general()
+                        
+    MDScreen: #Pantalla info general
+        name: 'screen_info_general'
+        ScrollView:
+            MDBoxLayout: #Capa de toda la pantalla
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(100)
+
+                MDTextField:
+                    hint_text: "Nombre Proyecto"
+
+                MDTextField:
+                    hint_text: "Tipologia de Vivienda"
+                
+                MDTextField:
+                    hint_text: "Numero de Ficha"
+
+                MDTextField:
+                    hint_text: "Direccion"
+                
+                MDTextField:
+                    hint_text: "Etapa"
+
+                MDTextField:
+                    hint_text: "Superficcie de Vivienda"
+
+                MDTextField:
+                    hint_text: "Orientacion Fachada"
+
+                MDTextField:
+                    hint_text: "Orientacion Acceso"
+
+                MDTextField:
+                    hint_text: "info 1"
+
+                MDTextField:
+                    hint_text: "info 2"
+
+                MDTextField:
+                    hint_text: "info 3"
+
+                MDTextField:
+                    hint_text: "info 4"
+
+
+                MDGridLayout:
+                    cols: 3
+                    MDRectangleFlatIconButton:
+                        size_hint_x: .3
+                        icon: "arrow-left-bold-outline"
+                        text: "Pantalla Principal"
+                        theme_text_color: "Custom"
+                        text_color: "white"
+                        line_color: "orange"
+                        theme_icon_color: "Custom"
+                        icon_color: "orange"
+                        on_release:
+                            app.root.transition = SlideTransition(direction = 'right')
+                            root.current = 'screen_principal'
+
+                    MDBoxLayout:
+                        size_hint_x: .4
+                
+                    MDRectangleFlatIconButton:
+                        size_hint_x: .3
+                        icon: "arrow-right-bold-outline"
+                        text: "Siguiente"
+                        theme_text_color: "Custom"
+                        text_color: "white"
+                        line_color: "orange"
+                        theme_icon_color: "Custom"
+                        icon_color: "orange"
+                        on_release:
+                            app.root.transition = SlideTransition(direction = 'left')
+                            root.current = 'screen_2'
+
+    MDScreen: #Pantalla 2
+        name: 'screen_2'
+        ScrollView:
+            MDBoxLayout: #Capa de toda la pantalla
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(100)
+
+                MDTextField:
+                    hint_text: "info 1"
+
+                MDTextField:
+                    hint_text: "info 2"
+
+                MDTextField:
+                    hint_text: "info 3"
+
+                MDTextField:
+                    hint_text: "info 4"
+
+
+                MDGridLayout:
+                    cols: 3
+                    MDRectangleFlatIconButton:
+                        size_hint_x: .3
+                        icon: "arrow-left-bold-outline"
+                        text: "Volver"
+                        theme_text_color: "Custom"
+                        text_color: "white"
+                        line_color: "orange"
+                        theme_icon_color: "Custom"
+                        icon_color: "orange"
+                        on_release:
+                            app.root.transition = SlideTransition(direction = 'right')
+                            root.current = 'screen_info_general'
+
+                    MDBoxLayout:
+                        size_hint_x: .4
+
+                    MDBoxLayout:
+                        size_hint_x: .3
+                   
+            
+
+            
+            
+            
+
+
+

@@ -1,0 +1,9 @@
+Source: https://kivy.org/doc/stable/gettingstarted/installation.html
+
+Instalacion de Kivy
+
+---------python -m pip install "kivy[base]" kivy_examples
+
+Intalacion KivyMD
+
+pip install kivymd
