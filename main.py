@@ -237,16 +237,17 @@ class MainApp(MDApp):
         fecha_actual = datetime.datetime.now()
         fecha = fecha_actual.strftime("%d-%m-%Y")
         dir_plantilla_general = "Plantillas/Plantilla_info_general.xlsx"
-        dir_archivos_guardados = "Guardados/"
         nombre_proyecto = self.root.ids.nombre_proyecto.text
-        dir_nuevo_archivo = dir_archivos_guardados + nombre_proyecto + " (" + fecha + ")" + ".xlsx" 
+        dir_nuevo_archivo = nombre_proyecto + " (" + fecha + ")" + ".xlsx" 
         nombre_archivo = nombre_proyecto
         shutil.copy(dir_plantilla_general, dir_nuevo_archivo)
 
         libro = load_workbook(filename=dir_nuevo_archivo)
         print('Se abrio el archivo con direccion:', dir_nuevo_archivo)
+
         hoja1 = libro['Hoja 1']
         hoja1['F8'] = nombre_archivo
+        
         libro.save(dir_nuevo_archivo)
         print('Se cerro el archivo con direccion:', dir_nuevo_archivo)
         dialog.dismiss()
