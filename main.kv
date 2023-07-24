@@ -1,0 +1,2576 @@
+<DrawerClickableItem@MDNavigationDrawerItem>
+    focus_color: "#e7e4c0"
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    ripple_color: "#c5bdd2"
+    selected_color: "#0c6c4d"
+
+
+<DrawerLabelItem@MDNavigationDrawerItem>
+    text_color: "#4a4939"
+    icon_color: "#4a4939"
+    focus_behavior: False
+    selected_color: "#4a4939"
+    _no_ripple_effect: True
+    
+
+MDScreen:
+    MDNavigationLayout:
+        ScreenManager:
+            id: sm_global
+
+            #Pantallas
+            MDScreen:
+                name: "inicio"
+                MDAnchorLayout:
+                    anchor_x: 'center'
+                    anchor_y: 'center'
+
+                    MDRectangleFlatButton:
+                        text: 'Iniciar inspección'
+                        on_release:
+                            sm_global.current = 'info_general'
+                            nav_drawer.set_state("close")
+                
+
+            MDScreen:
+                name: "info_general"
+
+                BoxLayout:
+                    orientation: 'vertical'
+
+                    MDTopAppBar:
+                        title: "Navegación"
+                        elevation: 4
+                        pos_hint: {"top": 1}
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                        right_action_items: [["close-circle-outline", lambda x: app.cancelar_proceso_d()], ["content-save-outline", lambda x: app.mostrar_dialogo_guardar()]]
+
+                    ScrollView:
+                        BoxLayout:
+                            orientation: 'vertical'
+                            size_hint_y: None
+                            height: self.minimum_height
+                            padding: 80
+                            spacing: 25
+                            
+                            #Box de textfields
+
+                            BoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                spacing: 10
+
+                                BoxLayout:
+                                    orientation: 'vertical'
+                            
+
+                                    MDLabel:
+                                        halign: "center"
+                                        text: "Información General"
+                                        font_style: "H4"
+                                        size: self.size
+
+                                
+
+                                MDTextField:
+                                    id: nombre_proyecto
+                                    hint_text: "Nombre de Proyecto:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+                                    
+
+                                MDTextField:
+                                    id: tipologia_vivienda
+                                    hint_text: "Tipología de Vivienda:"
+                                    multiline: False
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+                                    input_filter: lambda text, from_undo: text if all(c.isalnum() or c == ',' for c in text) else ""
+
+                                MDTextField:
+                                    id: direccion
+                                    hint_text: "Dirección:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+                                    input_filter: lambda text, from_undo: text if all(c.isalnum() or c == ',' for c in text) else ""
+
+                                MDTextField:
+                                    id: etapa
+                                    hint_text: "Etapa:"
+                                    input_filter: 'int'
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                MDTextField:
+                                    id: superficie_vivienda
+                                    hint_text: "Superficie de Vivienda:"
+                                    input_filter: 'int'
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                MDTextField:
+                                    id: numero_pisos
+                                    hint_text: "Número de Pisos:"
+                                    input_filter: 'int'
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                MDTextField:
+                                    id: orientacion_fachada
+                                    hint_text: "Orientación Fachada:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+                                    input_filter: lambda text, from_undo: text if text.isalpha() else ""
+
+                                MDTextField:
+                                    id: orientacion_acceso
+                                    hint_text: "Orientación Acceso:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+                                    input_filter: lambda text, from_undo: text if text.isalpha() else ""
+
+                                MDTextField:
+                                    id: temp_exterior
+                                    hint_text: "Temperatura exterior:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                MDTextField:
+                                    id: hum_exterior
+                                    hint_text: "Humedad exterior:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                MDTextField:
+                                    id: temp_interior
+                                    hint_text: "Temperatura interior:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                MDTextField:
+                                    id: hum_interior
+                                    hint_text: "Humedad interior:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                MDTextField:
+                                    id: años_uso_vivienda
+                                    hint_text: "Años de uso de la vivienda:"
+                                    input_filter: 'int'
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                MDTextField:
+                                    id: nom_inspector
+                                    hint_text: "Inspector CITEC UBB:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                MDTextField:
+                                    id: ci_inspector
+                                    hint_text: "RUT Inspector:"
+                                    helper_text: "Solo se permiten números (sin guión ni puntos)"
+                                    helper_text_mode:"persistent"
+                                    input_filter: 'int'
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                MDTextField:
+                                    id: num_recintos
+                                    hint_text: "N° de Recintos vivienda:"
+                                    input_filter: 'int'
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                MDTextField:
+                                    id: num_habitantes
+                                    hint_text: "Total número de habitantes:"
+                                    input_filter: 'int'
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                MDTextField:
+                                    id: num_adultos
+                                    hint_text: "Adultos:"
+                                    input_filter: 'int'
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                MDTextField:
+                                    id: num_niños
+                                    hint_text: "Niños en edad escolar:"
+                                    input_filter: 'int'
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                MDTextField:
+                                    id: num_adultos_may
+                                    hint_text: "Adultos Mayores:"
+                                    input_filter: 'int'
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                MDTextField:
+                                    id: obs_item_1
+                                    multiline: True
+                                    hint_text: "Observaciones Información General:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                MDTextField:
+                                    id: ocup_dia
+                                    hint_text: "Ocupación todo el día:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                MDTextField:
+                                    id: ocup_intermitente
+                                    hint_text: "Ocupación intermitente:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                MDTextField:
+                                    id: dens_ocup_prev
+                                    hint_text: "Densidad ocupacional prevista:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+                                
+                                MDTextField:
+                                    id: dens_ocup_real                                    
+                                    hint_text: "Densidad ocupacional real:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+                                
+                                MDTextField:
+                                    id: obs_item_2
+                                    multiline: True
+                                    hint_text: "Observaciones Ocupación Vivienda:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+
+                            
+                            
+                            #Bock de Checkboxes
+                            BoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                spacing: 20
+
+
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Ampliaciones:"
+                                    font_style: "H6"
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "ampliaciones_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox("Ampliaciones: Si")
+
+                                    MDLabel:
+                                        text: "Si"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "ampliaciones_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox("Ampliaciones: No")
+
+                                    MDLabel:
+                                        text: "No"
+                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Detalles de ampliaciones:"
+                                    font_style: "H6"
+                                    size: self.size
+                                
+                                MDTextField:
+                                    id: d_amp
+                                    hint_text: "¿Cuántas y de qué tipo?"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+
+
+
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Reparaciones:"
+                                    font_style: "H6"
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "reparaciones_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox("Reparaciones: Si")
+
+                                    MDLabel:
+                                        text: "Si"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "reparaciones_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox("Reparaciones: No")
+
+                                    MDLabel:
+                                        text: "No"
+                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Detalles de reparaciones:"
+                                    font_style: "H6"
+                                    size: self.size
+                                
+                                MDTextField:
+                                    id: d_rep
+                                    hint_text: "¿Cuántas y de qué tipo?"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+
+
+                             #checkbox Recibido por:
+
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Recibido por:"
+                                    font_style: "H6"
+                                    
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "recibido_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox("Propietario")
+
+                                    MDLabel:
+                                        text: "Propietario"
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "recibido_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox("Arrendatario")
+
+                                    MDLabel:
+                                        text: "Arrendatario"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "recibido_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox("Otro")
+
+                                    MDLabel:
+                                        text: "Otro"
+
+                                MDLabel:
+                                    halign: "left"
+                                    text: "¿Quien?"
+                                    font_style: "H6"
+                                    size: self.size
+
+                                MDTextField:
+                                    id: nombre_recibido_por
+                                    hint_text: "Nombre de la persona que recibió"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+                                    
+
+
+
+
+                                #checkbox clima
+
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Clima:"
+                                    font_style: "H6"
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        id: checkbox_soleado
+                                        active: False
+                                        group: "clima_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox("Soleado")
+
+                                    MDLabel:
+                                        text: "Soleado"
+
+                                    MDCheckbox:
+                                        id: checkbox_nublado
+                                        active: False
+                                        group: "clima_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox("Nublado")
+
+                                    MDLabel:
+                                        text: "Nublado"
+
+                                    MDCheckbox:
+                                        id: checkbox_lluvioso
+                                        active: False
+                                        group: "clima_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox("Lluvioso")
+                                        
+
+                                    MDLabel:
+                                        text: "Lluvioso"
+
+                                    MDCheckbox:
+                                        id: checkbox_par_nublado
+                                        active: False
+                                        group: "clima_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox("Parcialmente Nublado")
+                                        
+                                    MDLabel:
+                                        text: "Parcialmente Nublado"
+                                        font_size: 15
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            #Habitacion 1 - Muro Eje A
+
+            MDScreen:
+                name: "H1_Muro_eje_A"
+
+                BoxLayout:
+                    orientation: 'vertical'
+
+                    MDTopAppBar:
+                        title: "Navegación"
+                        elevation: 4
+                        md_bg_color: "lightseagreen"
+                        pos_hint: {"top": 1}
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                        right_action_items: [["close-circle-outline", lambda x: app.cancelar_proceso_d()], ["trash-can-outline", lambda x: app.eliminar_habitacion_d("Habitacion 1")], ["content-save-outline", lambda x: app.mostrar_dialogo_guardar()]]
+
+                    ScrollView:
+                        
+                        BoxLayout:
+                            orientation: 'vertical'
+                            size_hint_y: None
+                            height: self.minimum_height
+                            padding: 80
+                            spacing: 25
+                            
+                            #Box de textfields
+
+                            BoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                spacing: 10
+
+                                BoxLayout:
+                                    orientation: 'vertical'
+                            
+
+                                    MDLabel:
+                                        halign: "center"
+                                        text: "Muro eje A"
+                                        font_style: "H4"
+                                        size: self.size
+
+                                
+                                MDTextField:
+                                    id: h1_meA_perimetral
+                                    hint_text: "Muro Perimetral:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+                                    
+
+                                MDTextField:
+                                    id: h1_meA_interior
+                                    hint_text: "Muro Interior:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+                                
+                                MDTextField:
+                                    id: h1_meA_sup_muro
+                                    hint_text: "Superficie muro:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+                                
+                                MDTextField:
+                                    id: h1_meA_sup_ven
+                                    hint_text: "Superficie ventana:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                MDTextField:
+                                    id: h1_meA_tie_calef
+                                    hint_text: "¿Cuánto tiempo calefacciona?"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                MDTextField:
+                                    id: total_sup_afec
+                                    hint_text: "Total superficie de muro afectada:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                
+                               
+                            
+                            #Checkboxes
+
+                            MDLabel:
+                                halign: "left"
+                                text: "¿Presenta patologías visibles?"
+                                font_style: "H6"
+                                size: self.size
+
+                            BoxLayout:
+                                orientation: 'horizontal'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+
+                                MDCheckbox:
+                                    active: False
+                                    group: "patologias_group"
+                                    size_hint: None, None
+                                    size: dp(48), dp(48)
+                                    on_press: app.guardar_checkbox_h1_mea("Patologias: Si")
+
+                                MDLabel:
+                                    text: "Si"
+                                
+                                MDCheckbox:
+                                    active: False
+                                    group: "patologias_group"
+                                    size_hint: None, None
+                                    size: dp(48), dp(48)
+                                    on_press: app.guardar_checkbox_h1_mea("Patologias: No")
+
+                                MDLabel:
+                                    text: "No"
+
+
+                            MDLabel:
+                                halign: "left"
+                                text: "¿Olor a humedad?"
+                                font_style: "H6"
+                                size: self.size
+
+                            MDBoxLayout:
+                                orientation: 'horizontal'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+
+                                MDCheckbox:
+                                    active: False
+                                    group: "olor_group"
+                                    size_hint: None, None
+                                    size: dp(48), dp(48)
+                                    on_press: app.guardar_checkbox_h1_mea("Olor: Si")
+
+                                MDLabel:
+                                    text: "Si"
+                                
+                                MDCheckbox:
+                                    active: False
+                                    group: "olor_group"
+                                    size_hint: None, None
+                                    size: dp(48), dp(48)
+                                    on_press: app.guardar_checkbox_h1_mea("Olor: No")
+
+                                MDLabel:
+                                    text: "No"
+                            
+
+                            MDLabel:
+                                halign: "left"
+                                text: "Manifestaciones ocultas ¿fue pintado o limpiado últimamente?"
+                                font_style: "H6"
+                                size: self.size
+
+                            MDBoxLayout:
+                                orientation: 'horizontal'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+
+                                MDCheckbox:
+                                    active: False
+                                    group: "manifestaciones_group"
+                                    size_hint: None, None
+                                    size: dp(48), dp(48)
+                                    on_press: app.guardar_checkbox_h1_mea("Manifestaciones: Si")
+
+                                MDLabel:
+                                    text: "Si"
+                                
+                                MDCheckbox:
+                                    active: False
+                                    group: "manifestaciones_group"
+                                    size_hint: None, None
+                                    size: dp(48), dp(48)
+                                    on_press: app.guardar_checkbox_h1_mea("Manifestaciones: No")
+
+                                MDLabel:
+                                    text: "No"
+
+                                MDTextField:
+                                    id: manifestaciones
+                                    hint_text: "¿Cuál?"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+
+                            MDLabel:
+                                halign: "left"
+                                text: "¿Modificaciones?"
+                                font_style: "H6"
+                                size: self.size
+
+                            MDBoxLayout:
+                                orientation: 'horizontal'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+
+                                MDCheckbox:
+                                    active: False
+                                    group: "modificaciones_group"
+                                    size_hint: None, None
+                                    size: dp(48), dp(48)
+                                    on_press: app.guardar_checkbox_h1_mea("Modificaciones: Si")
+
+                                MDLabel:
+                                    text: "Si"
+                                
+                                MDCheckbox:
+                                    active: False
+                                    group: "modificaciones_group"
+                                    size_hint: None, None
+                                    size: dp(48), dp(48)
+                                    on_press: app.guardar_checkbox_h1_mea("Modificaciones: No")
+
+                                MDLabel:
+                                    text: "No"
+
+                                MDTextField:
+                                    id: mod
+                                    hint_text: "¿Cuál?"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+
+
+
+
+
+
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: 40
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Patología detectada: Manchas de humedad / moho"
+                                    font_style: "H6"
+                                    spacing: 70
+                                    size: self.size
+                                
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Encuentro esquina muro:"
+                                    font_style: "H6"
+
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "en_esq_muro_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Encuentro esquina muro mancha: Si")
+
+                                    MDLabel:
+                                        text: "Si"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "en_esq_muro_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Encuentro esquina muro mancha: No")
+
+                                    MDLabel:
+                                        text: "No"
+
+                                    MDTextField:
+                                        id: sup_afe_esq_muro
+                                        hint_text: "Superficie afectada:"
+                                        hint_text_color_normal: "white"
+                                        line_color_normal: "white"
+
+
+
+
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Encuentro cielo muro:"
+                                    font_style: "H6"
+
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "en_cie_muro_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Encuentro cielo muro mancha: Si")
+
+                                    MDLabel:
+                                        text: "Si"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "en_cie_muro_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Encuentro cielo muro mancha: No")
+
+                                    MDLabel:
+                                        text: "No"
+
+                                    MDTextField:
+                                        id: sup_afe_cie_muro
+                                        hint_text: "Superficie afectada:"
+                                        hint_text_color_normal: "white"
+                                        line_color_normal: "white"
+
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Encuentro piso muro:"
+                                    font_style: "H6"
+
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "en_pis_muro_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Encuentro piso muro mancha: Si")
+
+                                    MDLabel:
+                                        text: "Si"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "en_pis_muro_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Encuentro piso muro mancha: No")
+
+                                    MDLabel:
+                                        text: "No"
+
+                                    MDTextField:
+                                        id: sup_afe_pis_muro
+                                        hint_text: "Superficie afectada:"
+                                        hint_text_color_normal: "white"
+                                        line_color_normal: "white"
+
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Rasgo de ventana:"
+                                    font_style: "H6"
+
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "ras_ven_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Rasgo de ventana mancha: Si")
+
+                                    MDLabel:
+                                        text: "Si"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "ras_ven_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Rasgo de ventana mancha: No")
+
+                                    MDLabel:
+                                        text: "No"
+
+                                    MDTextField:
+                                        id: sup_afe_ras_ven
+                                        hint_text: "Superficie afectada:"
+                                        hint_text_color_normal: "white"
+                                        line_color_normal: "white"
+
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Bajo ventana (antepecho):"
+                                    font_style: "H6"
+
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "baj_ven_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Bajo ventana (antepecho) mancha: Si")
+
+                                    MDLabel:
+                                        text: "Si"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "baj_ven_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Bajo ventana (antepecho) mancha: No")
+
+                                    MDLabel:
+                                        text: "No"
+
+                                    MDTextField:
+                                        id: sup_afe_baj_ven
+                                        hint_text: "Superficie afectada:"
+                                        hint_text_color_normal: "white"
+                                        line_color_normal: "white"
+
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Área central:"
+                                    font_style: "H6"
+
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "ar_cen_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Área central mancha: Si")
+
+                                    MDLabel:
+                                        text: "Si"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "ar_cen_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Área central mancha: No")
+
+                                    MDLabel:
+                                        text: "No"
+
+                                    MDTextField:
+                                        id: sup_afe_ar_cen
+                                        hint_text: "Superficie afectada:"
+                                        hint_text_color_normal: "white"
+                                        line_color_normal: "white"
+
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: self.minimum_height
+                            
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Puntual localizada y/o extendida:"
+                                    font_style: "H6"
+
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "pun_loc_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Puntual localizada y/o extendida mancha: Si")
+
+                                    MDLabel:
+                                        text: "Si"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "pun_loc_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Puntual localizada y/o extendida mancha: No")
+
+                                    MDLabel:
+                                        text: "No"
+
+                                    MDTextField:
+                                        id: sup_afe_pun_loc
+                                        hint_text: "Superficie afectada:"
+                                        hint_text_color_normal: "white"
+                                        line_color_normal: "white"
+
+
+
+
+
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: 40
+
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Patología detectada: Daño físico mecánico"
+                                    font_style: "H6"
+                                    spacing: 70
+                                    size: self.size
+                                
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Encuentro esquina muro:"
+                                    font_style: "H6"
+
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "d_en_esq_muro_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Encuentro esquina muro daño: Si")
+
+                                    MDLabel:
+                                        text: "Si"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "d_en_esq_muro_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Encuentro esquina muro daño: No")
+
+                                    MDLabel:
+                                        text: "No"
+
+                                    MDTextField:
+                                        id: d_sup_afe_esq_muro
+                                        hint_text: "Superficie afectada:"
+                                        hint_text_color_normal: "white"
+                                        line_color_normal: "white"
+
+
+
+
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Encuentro cielo muro"
+                                    font_style: "H6"
+
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "d_en_cie_muro_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Encuentro cielo muro daño: Si")
+
+                                    MDLabel:
+                                        text: "Si"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "d_en_cie_muro_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Encuentro cielo muro daño: No")
+
+                                    MDLabel:
+                                        text: "No"
+
+                                    MDTextField:
+                                        id: d_sup_afe_cie_muro
+                                        hint_text: "Superficie afectada:"
+                                        hint_text_color_normal: "white"
+                                        line_color_normal: "white"
+
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Encuentro piso muro:"
+                                    font_style: "H6"
+
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "d_en_pis_muro_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Encuentro piso muro daño: Si")
+
+                                    MDLabel:
+                                        text: "Si"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "d_en_pis_muro_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Encuentro piso muro daño: No")
+
+                                    MDLabel:
+                                        text: "No"
+
+                                    MDTextField:
+                                        id: d_sup_afe_pis_muro
+                                        hint_text: "Superficie afectada:"
+                                        hint_text_color_normal: "white"
+                                        line_color_normal: "white"
+
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Rasgo de ventana:"
+                                    font_style: "H6"
+
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "d_ras_ven_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Rasgo de ventana daño: Si")
+
+                                    MDLabel:
+                                        text: "Si"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "d_ras_ven_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Rasgo de ventana daño: No")
+
+                                    MDLabel:
+                                        text: "No"
+
+                                    MDTextField:
+                                        id: d_sup_afe_ras_ven
+                                        hint_text: "Superficie afectada:"
+                                        hint_text_color_normal: "white"
+                                        line_color_normal: "white"
+
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Bajo ventana (antepecho):"
+                                    font_style: "H6"
+
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "d_baj_ven_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Bajo ventana (antepecho) daño: Si")
+
+                                    MDLabel:
+                                        text: "Si"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "d_baj_ven_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Bajo ventana (antepecho) daño: No")
+
+                                    MDLabel:
+                                        text: "No"
+
+                                    MDTextField:
+                                        id: d_sup_afe_baj_ven
+                                        hint_text: "Superficie afectada:"
+                                        hint_text_color_normal: "white"
+                                        line_color_normal: "white"
+
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Área central:"
+                                    font_style: "H6"
+
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "d_ar_cen_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Área central daño: Si")
+
+                                    MDLabel:
+                                        text: "Si"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "d_ar_cen_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Área central daño: No")
+
+                                    MDLabel:
+                                        text: "No"
+
+                                    MDTextField:
+                                        id: d_sup_afe_ar_cen
+                                        hint_text: "Superficie afectada:"
+                                        hint_text_color_normal: "white"
+                                        line_color_normal: "white"
+
+
+
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Puntual localizada y/o extendida:"
+                                    font_style: "H6"
+
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "d_pun_loc_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Puntual localizada y/o extendida daño: Si")
+
+                                    MDLabel:
+                                        text: "Si"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "d_pun_loc_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Puntual localizada y/o extendida daño: No")
+
+                                    MDLabel:
+                                        text: "No"
+
+                                    MDTextField:
+                                        id: d_sup_afe_pun_loc
+                                        hint_text: "Superficie afectada:"
+                                        hint_text_color_normal: "white"
+                                        line_color_normal: "white"
+
+
+
+
+
+
+
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: 40
+
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Sistema de ventilación (indicar en la planta su ubicación)"
+                                    font_style: "H6"
+                                    spacing: 50
+                                    size: self.size
+                                
+                            MDBoxLayout:
+                                orientation: 'horizontal'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Aireador:"
+                                    font_style: "H6"
+
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "aireador_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Aireador: Operativo")
+
+                                    MDLabel:
+                                        text: "Operativo"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "aireador_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Aireador: No Operativo")
+
+                                    MDLabel:
+                                        text: "No Operativo"
+
+                            MDBoxLayout:
+                                orientation: 'horizontal'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Extractor:"
+                                    font_style: "H6"
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "extractor_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Extractor: Operativo")
+
+                                    MDLabel:
+                                        text: "Operativo"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "extractor_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Extractor: No Operativo")
+
+                                    MDLabel:
+                                        text: "No Operativo"
+
+                            MDBoxLayout:
+                                orientation: 'horizontal'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Campana:"
+                                    font_style: "H6"
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "campana_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Campana: Operativo")
+
+                                    MDLabel:
+                                        text: "Operativo"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "campana_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Campana: No Operativo")
+
+                                    MDLabel:
+                                        text: "No Operativo"
+
+                            MDBoxLayout:
+                                orientation: 'horizontal'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Celosía puerta:"
+                                    font_style: "H6"
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "celosia_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Celosía puerta: Operativo")
+
+                                    MDLabel:
+                                        text: "Operativo"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "celosia_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Celosía puerta: No Operativo")
+
+                                    MDLabel:
+                                        text: "No Operativo"
+                            
+                            MDBoxLayout:
+                                orientation: 'horizontal'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Rebaje puerta:"
+                                    font_style: "H6"
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "rebaje_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Rebaje puerta: Operativo")
+
+                                    MDLabel:
+                                        text: "Operativo"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "rebaje_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Rebaje puerta: No Operativo")
+
+                                    MDLabel:
+                                        text: "No Operativo"
+
+                            MDBoxLayout:
+                                orientation: 'horizontal'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Otro:"
+                                    font_style: "H6"
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "otro_vent_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Otro vent: Operativo")
+
+                                    MDLabel:
+                                        text: "Operativo"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "otro_vent_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Otro vent: No Operativo")
+
+                                    MDLabel:
+                                        text: "No Operativo"
+
+
+
+                            MDLabel:
+                                halign: "left"
+                                text: "Nivel de afectación:"
+                                font_style: "H6"
+                                size: self.size
+
+                            MDBoxLayout:
+                                orientation: 'horizontal'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+
+                                MDCheckbox:
+                                    active: False
+                                    group: "afectacion_group"
+                                    size_hint: None, None
+                                    size: dp(48), dp(48)
+                                    on_press: app.guardar_checkbox_h1_mea("Nulo")
+
+                                MDLabel:
+                                    text: "Nulo"
+                                
+                                MDCheckbox:
+                                    active: False
+                                    group: "afectacion_group"
+                                    size_hint: None, None
+                                    size: dp(48), dp(48)
+                                    on_press: app.guardar_checkbox_h1_mea("Bajo")
+
+                                MDLabel:
+                                    text: "Bajo"
+
+                                MDCheckbox:
+                                    active: False
+                                    group: "afectacion_group"
+                                    size_hint: None, None
+                                    size: dp(48), dp(48)
+                                    on_press: app.guardar_checkbox_h1_mea("Medio")
+
+                                MDLabel:
+                                    text: "Medio"
+
+                                MDCheckbox:
+                                    active: False
+                                    group: "afectacion_group"
+                                    size_hint: None, None
+                                    size: dp(48), dp(48)
+                                    on_press: app.guardar_checkbox_h1_mea("Alto")
+
+                                MDLabel:
+                                    text: "Alto"
+
+
+
+                            
+
+
+
+                            MDLabel:
+                                halign: "left"
+                                text: "Sistema de Calefacción:"
+                                font_style: "H6"
+                                size: self.size
+
+                            MDBoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "calefacion_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Calefacción: Eléctrico")
+
+                                    MDLabel:
+                                        text: "Eléctrico (seca)"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "calefacion_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Calefacción: Gas / parafina con evacuacipon exterior (seca)")
+
+                                    MDLabel:
+                                        text: "Gas / parafina con evacuacipon exterior (seca)"
+                                
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "calefacion_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Calefacción: Biomasa con evacuación exterior (seca)")
+
+                                    MDLabel:
+                                        text: "Biomasa con evacuación exterior (seca)"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "calefacion_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Calefacción: Parafina/gas móvil (húmeda)")
+
+                                    MDLabel:
+                                        text: "Parafina/gas móvil (húmeda)"
+
+                                MDTextField:
+                                    id: otro_cal
+                                    hint_text: "Otro ¿cuál?"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+
+
+
+
+            #Screen H1 Muro Eje 2
+            MDScreen:
+                name: "H1_Muro_eje_2"
+
+                BoxLayout:
+                    orientation: 'vertical'
+
+                    MDTopAppBar:
+                        title: "Navegación"
+                        elevation: 4
+                        md_bg_color: "lightseagreen"
+                        pos_hint: {"top": 1}
+                        left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+                        right_action_items: [["close-circle-outline", lambda x: app.cancelar_proceso_d()], ["trash-can-outline", lambda x: app.eliminar_hoja_d("H1 Hoja 2")], ["content-save-outline", lambda x: app.mostrar_dialogo_guardar()]]
+
+                    ScrollView:
+                        
+                        BoxLayout:
+                            orientation: 'vertical'
+                            size_hint_y: None
+                            height: self.minimum_height
+                            padding: 80
+                            spacing: 25
+                            
+                            #Box de textfields
+
+                            BoxLayout:
+                                orientation: 'vertical'
+                                size_hint_y: None
+                                height: self.minimum_height
+                                spacing: 10
+
+                                BoxLayout:
+                                    orientation: 'vertical'
+                            
+
+                                    MDLabel:
+                                        halign: "center"
+                                        text: "Muro eje 2"
+                                        font_style: "H4"
+                                        size: self.size
+
+                                MDTextField:
+                                    id: h1_me2_m_perimetral
+                                    hint_text: "Muro Perimetral:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+                                    
+                                MDTextField:
+                                    id: h1_me2_m_interior
+                                    hint_text: "Muro Interior:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+                                
+                                MDTextField:
+                                    id: h1_me2_sup_mur
+                                    hint_text: "Superficie muro:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+                                
+                                MDTextField:
+                                    id: h1_me2_sup_ven
+                                    hint_text: "Superficie ventana:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+                                MDTextField:
+                                    id: total_sup_afec_h2
+                                    hint_text: "Total superficie de muro afectada:"
+                                    hint_text_color_normal: "white"
+                                    line_color_normal: "white"
+
+
+
+                                MDBoxLayout:
+                                    orientation: 'vertical'
+                                    size_hint_y: None
+                                    height: 40
+                                    MDLabel:
+                                        halign: "left"
+                                        text: "Patología detectada: Manchas de humedad / moho"
+                                        font_style: "H6"
+                                        spacing: 70
+                                        size: self.size
+                                    
+                                MDBoxLayout:
+                                    orientation: 'vertical'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    
+                                    MDLabel:
+                                        halign: "left"
+                                        text: "Encuentro esquina muro:"
+                                        font_style: "H6"
+
+                                        size: self.size
+
+                                    MDBoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: self.minimum_height
+
+                                        MDCheckbox:
+                                            active: False
+                                            group: "en_esq_muro_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Encuentro esquina muro mancha: Si")
+
+                                        MDLabel:
+                                            text: "Si"
+                                        
+                                        MDCheckbox:
+                                            active: False
+                                            group: "en_esq_muro_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Encuentro esquina muro mancha: No")
+
+                                        MDLabel:
+                                            text: "No"
+
+                                        MDTextField:
+                                            id: sup_afe_esq_muro_h2
+                                            hint_text: "Total superficie de muro afectada:"
+                                            hint_text_color_normal: "white"
+                                            line_color_normal: "white"
+
+
+
+
+                                MDBoxLayout:
+                                    orientation: 'vertical'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    
+                                    MDLabel:
+                                        halign: "left"
+                                        text: "Encuentro cielo muro:"
+                                        font_style: "H6"
+
+                                        size: self.size
+
+                                    MDBoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: self.minimum_height
+
+                                        MDCheckbox:
+                                            active: False
+                                            group: "en_cie_muro_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Encuentro cielo muro mancha: Si")
+
+                                        MDLabel:
+                                            text: "Si"
+                                        
+                                        MDCheckbox:
+                                            active: False
+                                            group: "en_cie_muro_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Encuentro cielo muro mancha: No")
+
+                                        MDLabel:
+                                            text: "No"
+
+                                        MDTextField:
+                                            id: sup_afe_cie_muro_h2
+                                            hint_text: "Superficie afectada:"
+                                            hint_text_color_normal: "white"
+                                            line_color_normal: "white"
+
+                                MDBoxLayout:
+                                    orientation: 'vertical'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    
+                                    MDLabel:
+                                        halign: "left"
+                                        text: "Encuentro piso muro:"
+                                        font_style: "H6"
+
+                                        size: self.size
+
+                                    MDBoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: self.minimum_height
+
+                                        MDCheckbox:
+                                            active: False
+                                            group: "en_pis_muro_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Encuentro piso muro mancha: Si")
+
+                                        MDLabel:
+                                            text: "Si"
+                                        
+                                        MDCheckbox:
+                                            active: False
+                                            group: "en_pis_muro_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Encuentro piso muro mancha: No")
+
+                                        MDLabel:
+                                            text: "No"
+
+                                        MDTextField:
+                                            id: sup_afe_pis_muro_h2
+                                            hint_text: "Superficie afectada:"
+                                            hint_text_color_normal: "white"
+                                            line_color_normal: "white"
+
+                                MDBoxLayout:
+                                    orientation: 'vertical'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    
+                                    MDLabel:
+                                        halign: "left"
+                                        text: "Rasgo de ventana:"
+                                        font_style: "H6"
+
+                                        size: self.size
+
+                                    MDBoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: self.minimum_height
+
+                                        MDCheckbox:
+                                            active: False
+                                            group: "ras_ven_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Rasgo de ventana mancha: Si")
+
+                                        MDLabel:
+                                            text: "Si"
+                                        
+                                        MDCheckbox:
+                                            active: False
+                                            group: "ras_ven_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Rasgo de ventana mancha: No")
+
+                                        MDLabel:
+                                            text: "No"
+
+                                        MDTextField:
+                                            id: sup_afe_ras_ven_h2
+                                            hint_text: "Superficie afectada:"
+                                            hint_text_color_normal: "white"
+                                            line_color_normal: "white"
+
+                                MDBoxLayout:
+                                    orientation: 'vertical'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    
+                                    MDLabel:
+                                        halign: "left"
+                                        text: "Bajo ventana (antepecho):"
+                                        font_style: "H6"
+
+                                        size: self.size
+
+                                    MDBoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: self.minimum_height
+
+                                        MDCheckbox:
+                                            active: False
+                                            group: "baj_ven_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Bajo ventana (antepecho) mancha: Si")
+
+                                        MDLabel:
+                                            text: "Si"
+                                        
+                                        MDCheckbox:
+                                            active: False
+                                            group: "baj_ven_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Bajo ventana (antepecho) mancha: No")
+
+                                        MDLabel:
+                                            text: "No"
+
+                                        MDTextField:
+                                            id: sup_afe_baj_ven_h2
+                                            hint_text: "Superficie afectada:"
+                                            hint_text_color_normal: "white"
+                                            line_color_normal: "white"
+
+                                MDBoxLayout:
+                                    orientation: 'vertical'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    
+                                    MDLabel:
+                                        halign: "left"
+                                        text: "Área central:"
+                                        font_style: "H6"
+
+                                        size: self.size
+
+                                    MDBoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: self.minimum_height
+
+                                        MDCheckbox:
+                                            active: False
+                                            group: "ar_cen_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Área central mancha: Si")
+
+                                        MDLabel:
+                                            text: "Si"
+                                        
+                                        MDCheckbox:
+                                            active: False
+                                            group: "ar_cen_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Área central mancha: No")
+
+                                        MDLabel:
+                                            text: "No"
+
+                                        MDTextField:
+                                            id: sup_afe_ar_cen_h2
+                                            hint_text: "Superficie afectada:"
+                                            hint_text_color_normal: "white"
+                                            line_color_normal: "white"
+
+                                MDBoxLayout:
+                                    orientation: 'vertical'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                
+                                    MDLabel:
+                                        halign: "left"
+                                        text: "Puntual localizada y/o extendida:"
+                                        font_style: "H6"
+
+                                        size: self.size
+
+                                    MDBoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: self.minimum_height
+
+                                        MDCheckbox:
+                                            active: False
+                                            group: "pun_loc_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Puntual localizada y/o extendida mancha: Si")
+
+                                        MDLabel:
+                                            text: "Si"
+                                        
+                                        MDCheckbox:
+                                            active: False
+                                            group: "pun_loc_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Puntual localizada y/o extendida mancha: No")
+
+                                        MDLabel:
+                                            text: "No"
+
+                                        MDTextField:
+                                            id: sup_afe_pun_loc_h2
+                                            hint_text: "Superficie afectada:"
+                                            hint_text_color_normal: "white"
+                                            line_color_normal: "white"
+
+
+
+
+
+                                MDBoxLayout:
+                                    orientation: 'vertical'
+                                    size_hint_y: None
+                                    height: 40
+
+                                    MDLabel:
+                                        halign: "left"
+                                        text: "Patología detectada: Daño físico mecánico"
+                                        font_style: "H6"
+                                        spacing: 70
+                                        size: self.size
+                                    
+                                MDBoxLayout:
+                                    orientation: 'vertical'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    
+                                    MDLabel:
+                                        halign: "left"
+                                        text: "Encuentro esquina muro:"
+                                        font_style: "H6"
+
+                                        size: self.size
+
+                                    MDBoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: self.minimum_height
+
+                                        MDCheckbox:
+                                            active: False
+                                            group: "d_en_esq_muro_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Encuentro esquina muro daño: Si")
+
+                                        MDLabel:
+                                            text: "Si"
+                                        
+                                        MDCheckbox:
+                                            active: False
+                                            group: "d_en_esq_muro_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Encuentro esquina muro daño: No")
+
+                                        MDLabel:
+                                            text: "No"
+
+                                        MDTextField:
+                                            id: d_sup_afe_esq_muro_h2
+                                            hint_text: "Superficie afectada:"
+                                            hint_text_color_normal: "white"
+                                            line_color_normal: "white"
+
+
+
+
+                                MDBoxLayout:
+                                    orientation: 'vertical'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    
+                                    MDLabel:
+                                        halign: "left"
+                                        text: "Encuentro cielo muro"
+                                        font_style: "H6"
+
+                                        size: self.size
+
+                                    MDBoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: self.minimum_height
+
+                                        MDCheckbox:
+                                            active: False
+                                            group: "d_en_cie_muro_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Encuentro cielo muro daño: Si")
+
+                                        MDLabel:
+                                            text: "Si"
+                                        
+                                        MDCheckbox:
+                                            active: False
+                                            group: "d_en_cie_muro_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Encuentro cielo muro daño: No")
+
+                                        MDLabel:
+                                            text: "No"
+
+                                        MDTextField:
+                                            id: d_sup_afe_cie_muro_h2
+                                            hint_text: "Superficie afectada:"
+                                            hint_text_color_normal: "white"
+                                            line_color_normal: "white"
+
+                                MDBoxLayout:
+                                    orientation: 'vertical'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    
+                                    MDLabel:
+                                        halign: "left"
+                                        text: "Encuentro piso muro:"
+                                        font_style: "H6"
+
+                                        size: self.size
+
+                                    MDBoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: self.minimum_height
+
+                                        MDCheckbox:
+                                            active: False
+                                            group: "d_en_pis_muro_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Encuentro piso muro daño: Si")
+
+                                        MDLabel:
+                                            text: "Si"
+                                        
+                                        MDCheckbox:
+                                            active: False
+                                            group: "d_en_pis_muro_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Encuentro piso muro daño: No")
+
+                                        MDLabel:
+                                            text: "No"
+
+                                        MDTextField:
+                                            id: d_sup_afe_pis_muro_h2
+                                            hint_text: "Superficie afectada:"
+                                            hint_text_color_normal: "white"
+                                            line_color_normal: "white"
+
+                                MDBoxLayout:
+                                    orientation: 'vertical'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    
+                                    MDLabel:
+                                        halign: "left"
+                                        text: "Rasgo de ventana:"
+                                        font_style: "H6"
+
+                                        size: self.size
+
+                                    MDBoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: self.minimum_height
+
+                                        MDCheckbox:
+                                            active: False
+                                            group: "d_ras_ven_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Rasgo de ventana daño: Si")
+
+                                        MDLabel:
+                                            text: "Si"
+                                        
+                                        MDCheckbox:
+                                            active: False
+                                            group: "d_ras_ven_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Rasgo de ventana daño: No")
+
+                                        MDLabel:
+                                            text: "No"
+
+                                        MDTextField:
+                                            id: d_sup_afe_ras_ven_h2
+                                            hint_text: "Superficie afectada:"
+                                            hint_text_color_normal: "white"
+                                            line_color_normal: "white"
+
+                                MDBoxLayout:
+                                    orientation: 'vertical'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    
+                                    MDLabel:
+                                        halign: "left"
+                                        text: "Bajo ventana (antepecho):"
+                                        font_style: "H6"
+
+                                        size: self.size
+
+                                    MDBoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: self.minimum_height
+
+                                        MDCheckbox:
+                                            active: False
+                                            group: "d_baj_ven_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Bajo ventana (antepecho) daño: Si")
+
+                                        MDLabel:
+                                            text: "Si"
+                                        
+                                        MDCheckbox:
+                                            active: False
+                                            group: "d_baj_ven_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Bajo ventana (antepecho) daño: No")
+
+                                        MDLabel:
+                                            text: "No"
+
+                                        MDTextField:
+                                            id: d_sup_afe_baj_ven_h2
+                                            hint_text: "Superficie afectada:"
+                                            hint_text_color_normal: "white"
+                                            line_color_normal: "white"
+
+                                MDBoxLayout:
+                                    orientation: 'vertical'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    
+                                    MDLabel:
+                                        halign: "left"
+                                        text: "Área central:"
+                                        font_style: "H6"
+
+                                        size: self.size
+
+                                    MDBoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: self.minimum_height
+
+                                        MDCheckbox:
+                                            active: False
+                                            group: "d_ar_cen_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Área central daño: Si")
+
+                                        MDLabel:
+                                            text: "Si"
+                                        
+                                        MDCheckbox:
+                                            active: False
+                                            group: "d_ar_cen_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Área central daño: No")
+
+                                        MDLabel:
+                                            text: "No"
+
+                                        MDTextField:
+                                            id: d_sup_afe_ar_cen_h2
+                                            hint_text: "Superficie afectada:"
+                                            hint_text_color_normal: "white"
+                                            line_color_normal: "white"
+
+
+
+                                MDBoxLayout:
+                                    orientation: 'vertical'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    
+                                    MDLabel:
+                                        halign: "left"
+                                        text: "Puntual localizada y/o extendida:"
+                                        font_style: "H6"
+
+                                        size: self.size
+
+                                    MDBoxLayout:
+                                        orientation: 'horizontal'
+                                        size_hint_y: None
+                                        height: self.minimum_height
+
+                                        MDCheckbox:
+                                            active: False
+                                            group: "d_pun_loc_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Puntual localizada y/o extendida daño: Si")
+
+                                        MDLabel:
+                                            text: "Si"
+                                        
+                                        MDCheckbox:
+                                            active: False
+                                            group: "d_pun_loc_h2_group"
+                                            size_hint: None, None
+                                            size: dp(48), dp(48)
+                                            on_press: app.guardar_checkbox_h1_me2("Puntual localizada y/o extendida daño: No")
+
+                                        MDLabel:
+                                            text: "No"
+
+                                        MDTextField:
+                                            id: d_sup_afe_pun_loc_h2
+                                            hint_text: "Superficie afectada:"
+                                            hint_text_color_normal: "white"
+                                            line_color_normal: "white"
+
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Nivel de afectación:"
+                                    font_style: "H6"
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "h2_afectacion_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_me2("Nulo")
+
+                                    MDLabel:
+                                        text: "Nulo"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "h2_afectacion_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_me2("Bajo")
+
+                                    MDLabel:
+                                        text: "Bajo"
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "h2_afectacion_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_me2("Medio")
+
+                                    MDLabel:
+                                        text: "Medio"
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "h2_afectacion_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_me2("Alto")
+
+                                    MDLabel:
+                                        text: "Alto"
+
+
+
+
+
+
+
+            
+
+
+
+
+                            
+                               
+
+                            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        MDNavigationDrawer:
+            id: nav_drawer
+            radius: (0, 16, 16, 0)
+
+            MDNavigationDrawerMenu:
+
+                MDNavigationDrawerHeader:
+                    title: "Navegación"
+                    title_color: "#4a4939"
+                    text: "Hojas"
+                    spacing: "4dp"
+                    padding: "12dp", 0, 0, "56dp"
+
+
+                #Informacion General
+
+                MDNavigationDrawerLabel:
+                    text: "Información General"
+                    
+
+                DrawerClickableItem:
+                    icon: "file-outline"
+                    text: 'Información General'
+                    on_release:
+                        sm_global.current = 'info_general'
+                        nav_drawer.set_state("close")
+
+                MDTextField:
+                    id: nombre_habitacion1
+                    mode: "rectangle"
+                    hint_text: "Habitación 1"
+
+                DrawerClickableItem:
+                    icon: "file-outline"
+                    text: 'Muro Eje A'
+                    on_release:
+                        app.asig_h1_mea()
+                        sm_global.current = 'H1_Muro_eje_A'
+                        nav_drawer.set_state("close")
+
+                DrawerClickableItem:
+                    icon: "file-outline"
+                    text: 'Muro Eje 2'
+                    on_release:
+                        app.asig_h1_me2()
+                        sm_global.current = 'H1_Muro_eje_2'
+                        nav_drawer.set_state("close")
+
+                
+                
+
