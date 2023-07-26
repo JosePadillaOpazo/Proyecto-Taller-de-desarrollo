@@ -10,12 +10,8 @@ from openpyxl import load_workbook
 
 
 
-class InfoGeneralScreen(ScrollView):
-    pass
-
-
-
 class CitecUbbApp(MDApp):
+
     hora_ingreso = datetime.datetime.now().strftime("%H:%M")
 
     def build(self):
@@ -44,6 +40,22 @@ class CitecUbbApp(MDApp):
         )
         dialog.open()
 
+
+    def guardar_archivo(self, dialog, textfield):
+        # Obtener el valor ingresado en el textfield
+        nombre_ingresado = textfield.text
+        
+        self.guardar(nombre_ingresado)
+        
+        #self.root.clear_widgets()
+        #self.root = Builder.load_file('main.kv')
+        #self.stop()
+        #CitecUbbApp().run()
+        dialog.dismiss()
+
+
+
+    #Eliminar Habitacion con sus hojas
     def eliminar_habitacion_d(self, habitacion):
         if habitacion == "Habitacion 1":
             dialog_h = MDDialog(
@@ -65,16 +77,24 @@ class CitecUbbApp(MDApp):
             )
             dialog_h.open()
 
+
+
     def eliminar_habitacion(self, habitacion, dialog_h):
         
-        if habitacion == "Habitacion 1":
+        if habitacion == "Habitación 1":
             self.h1_mea=0
-            print("h1_mea= ", + self.h1_mea)
+            self.h1_me2=0
+            self.h1_me3=0
+            self.h1_pi_cie=0
             
         self.redirigir_pantalla_dialogo("info_general", dialog_h) 
 
-    #Dialogos eliminar hojas
 
+
+
+
+
+    #Dialogos eliminar hojas
     def eliminar_hoja_d(self, hoja):
         dialogo_h = MDDialog(
             text="¿Seguro que deseas eliminar " + hoja + " ?",
@@ -102,485 +122,15 @@ class CitecUbbApp(MDApp):
         
         if hoja == "H1 Hoja 2":
             self.h1_me2=0
-            print("h1_me2= ", + self.h1_me2)
-            self.redirigir_pantalla_dialogo("H1_Muro_eje_A", dialogo_h) 
-
-
-
-
-
-        
-
-
-
-
-    
-
-
-    clima=""
-    recibido_por=""
-    ampliaciones=""
-    reparaciones=""
-    
-    def guardar_checkbox(self, seleccion):
-        if seleccion == "Soleado":
-            self.clima = seleccion
-            print("Clima: " + self.clima)
-            
-        if seleccion == "Nublado":
-            self.clima = seleccion
-            print("Clima: " + self.clima)
-
-        if seleccion == "Lluvioso":
-            self.clima = seleccion
-            print("Clima: " + self.clima)
-
-        if seleccion == "Parcialmente Nublado":
-            self.clima = seleccion
-            print("Clima: " + self.clima)
-
-        if seleccion == "Propietario":
-            self.recibido_por = seleccion
-            print("Recibido por: " + self.recibido_por)
-
-        if seleccion == "Arrendatario":
-            self.recibido_por = seleccion
-            print("Recibido por: " + self.recibido_por)
-
-        if seleccion == "Otro":
-            self.recibido_por = seleccion
-            print("Recibido por: " + self.recibido_por)
-        
-        if seleccion == "Ampliaciones: Si":
-            self.ampliaciones = "Si"
-            print("Ampliaciones: " + self.ampliaciones)
-
-        if seleccion == "Ampliaciones: No":
-            self.ampliaciones = "No"
-            print("Ampliaciones: " + self.ampliaciones)
-
-        if seleccion == "Reparaciones: Si":
-            self.reparaciones = "Si"
-            print("Reparaciones: " + self.reparaciones)
-
-        if seleccion == "Reparaciones: No":
-            self.reparaciones = "No"
-            print("Reparaciones: " + self.reparaciones)
-
-
-    pat_vis=""
-    olor=""
-    manif=""
-    modif=""
-    en_esq_muro=""
-    en_cie_muro=""
-    en_pis_muro=""
-    ras_ven=""
-    baj_ven=""
-    ar_cen=""
-    pun_loc=""
-    d_en_esq_muro=""
-    d_en_cie_muro=""
-    d_en_pis_muro=""
-    d_ras_ven=""
-    d_baj_ven=""
-    d_ar_cen=""
-    d_pun_loc=""
-    aireador=""
-    extractor=""
-    campana=""
-    cel_pu=""
-    reb_pu=""
-    otra_vent=""
-
-    afectacion=""
-    calefaccion=""
-
-    def guardar_checkbox_h1_mea(self, seleccion):
-        if seleccion == "Patologias: Si":
-            self.pat_vis = "Si"
-            print("Patologias: " + self.pat_vis )
-
-        if seleccion == "Patologias: No":
-            self.pat_vis = "No"
-            print("Patologias: " + self.pat_vis )
-        
-        if seleccion == "Olor: Si":
-            self.olor = "Si"
-            print("Olor: " + self.olor )
-        
-        if seleccion == "Olor: No":
-            self.olor = "No"
-            print("Olor: " + self.olor )
-
-        if seleccion == "Manifestaciones: Si":
-            self.manif = "Si"
-            print("Manifestaciones: " + self.manif )
-
-        if seleccion == "Manifestaciones: No":
-            self.manif = "No"
-            print("Manifestaciones: " + self.manif )
-        
-        if seleccion == "Modificaciones: Si":
-            self.modif = "Si"
-            print("Modificaciones: " + self.modif )
-        
-        if seleccion == "Modificaciones: No":
-            self.modif = "No"
-            print("Modificaciones: " + self.modif )
-
-
-
-        if seleccion == "Encuentro esquina muro mancha: Si":
-            self.en_esq_muro = "Si"
-            print("Encuentro esquina muro mancha: " + self.en_esq_muro )
-
-        if seleccion == "Encuentro esquina muro mancha: No":
-            self.en_esq_muro = "No"
-            print("Encuentro esquina muro mancha: " + self.en_esq_muro )
-
-        if seleccion == "Encuentro cielo muro mancha: Si":
-            self.en_cie_muro = "Si"
-            print("Encuentro cielo muro mancha: " + self.en_cie_muro )
-        
-        if seleccion == "Encuentro cielo muro mancha: No":
-            self.en_cie_muro = "No"
-            print("Encuentro cielo muro mancha: " + self.en_cie_muro )
-
-        if seleccion == "Encuentro piso muro mancha: Si":
-            self.en_pis_muro = "Si"
-            print("Encuentro piso muro mancha: " + self.en_pis_muro )
-        
-        if seleccion == "Encuentro piso muro mancha: No":
-            self.en_pis_muro = "No"
-            print("Encuentro piso muro mancha:: " + self.en_pis_muro )
-
-        if seleccion == "Rasgo de ventana mancha: Si":
-            self.ras_ven = "Si"
-            print("Rasgo de ventana mancha " + self.ras_ven )
-
-        if seleccion == "Rasgo de ventana mancha: No":
-            self.ras_ven = "No"
-            print("Rasgo de ventana mancha: " + self.ras_ven )
-
-        if seleccion == "Bajo ventana (antepecho) mancha: Si":
-            self.baj_ven = "Si"
-            print("Bajo ventana (antepecho) mancha:" + self.baj_ven )
-
-        if seleccion == "Bajo ventana (antepecho) mancha: No":
-            self.baj_ven = "No"
-            print("Bajo ventana (antepecho) mancha:" + self.baj_ven )
-
-        if seleccion == "Área central mancha: Si":
-            self.ar_cen = "Si"
-            print("Área central mancha:" + self.ar_cen )
-
-        if seleccion == "Área central mancha: No":
-            self.ar_cen = "No"
-            print("Área central mancha: " + self.ar_cen )
-
-        if seleccion == "Puntual localizada y/o extendida mancha: Si":
-            self.pun_loc = "Si"
-            print("Puntual localizada y/o extendida mancha:" + self.pun_loc )
-
-        if seleccion == "Puntual localizada y/o extendida mancha: No":
-            self.pun_loc = "No"
-            print("Puntual localizada y/o extendida mancha:" + self.pun_loc )
-
-        
-
-        if seleccion == "Encuentro esquina muro daño: Si":
-            self.d_en_esq_muro = "Si"
-            print("Encuentro esquina muro daño: " + self.d_en_esq_muro )
-
-        if seleccion == "Encuentro esquina muro daño: No":
-            self.d_en_esq_muro = "No"
-            print("Encuentro esquina muro daño: " + self.d_en_esq_muro )
-
-        if seleccion == "Encuentro cielo muro daño: Si":
-            self.d_en_cie_muro = "Si"
-            print("Encuentro cielo muro daño: " + self.d_en_cie_muro )
-        
-        if seleccion == "Encuentro cielo muro daño: No":
-            self.d_en_cie_muro = "No"
-            print("Encuentro cielo muro daño: " + self.d_en_cie_muro )
-
-        if seleccion == "Encuentro piso muro daño: Si":
-            self.d_en_pis_muro = "Si"
-            print("Encuentro piso muro daño: " + self.d_en_pis_muro )
-        
-        if seleccion == "Encuentro piso muro daño: No":
-            self.d_en_pis_muro = "No"
-            print("Encuentro piso muro daño:: " + self.d_en_pis_muro )
-
-        if seleccion == "Rasgo de ventana daño: Si":
-            self.d_ras_ven = "Si"
-            print("Rasgo de ventana daño " + self.d_ras_ven )
-
-        if seleccion == "Rasgo de ventana daño: No":
-            self.d_ras_ven = "No"
-            print("Rasgo de ventana daño: " + self.d_ras_ven )
-
-        if seleccion == "Bajo ventana (antepecho) daño: Si":
-            self.d_baj_ven = "Si"
-            print("Bajo ventana (antepecho) daño:" + self.d_baj_ven )
-
-        if seleccion == "Bajo ventana (antepecho) daño: No":
-            self.d_baj_ven = "No"
-            print("Bajo ventana (antepecho) daño:" + self.d_baj_ven )
-
-        if seleccion == "Área central daño: Si":
-            self.d_ar_cen = "Si"
-            print("Área central daño:" + self.d_ar_cen )
-
-        if seleccion == "Área central daño: No":
-            self.d_ar_cen = "No"
-            print("Área central daño: " + self.d_ar_cen )
-
-        if seleccion == "Puntual localizada y/o extendida daño: Si":
-            self.d_pun_loc = "Si"
-            print("Puntual localizada y/o extendida daño:" + self.d_pun_loc )
-
-        if seleccion == "Puntual localizada y/o extendida daño: No":
-            self.d_pun_loc = "No"
-            print("Puntual localizada y/o extendida daño:" + self.d_pun_loc )
-
-
-
-        if seleccion == "Aireador: Operativo":
-            self.aireador = "Operativo"
-            print("Aireador:" + self.aireador )
-
-        if seleccion == "Aireador: No Operativo":
-            self.aireador = "No Operativo"
-            print("Aireador:" + self.aireador )
-
-        if seleccion == "Extractor: Operativo":
-            self.extractor = "Operativo"
-            print("Extractor:" + self.extractor )
-
-        if seleccion == "Extractor: No Operativo":
-            self.extractor = "No Operativo"
-            print("Extractor:" + self.extractor )
-
-        if seleccion == "Campana: Operativo":
-            self.campana = "Operativo"
-            print("Campana:" + self.campana )
-
-        if seleccion == "Campana: No Operativo":
-            self.campana = "No Operativo"
-            print("Campana:" + self.campana )
-
-        if seleccion == "Celosía puerta: Operativo":
-            self.cel_pu = "Operativo"
-            print("Celosía puerta:" + self.cel_pu )
-
-        if seleccion == "Celosía puerta: No Operativo":
-            self.cel_pu = "No Operativo"
-            print("Celosía puerta:" + self.cel_pu )
-
-        if seleccion == "Rebaje puerta: Operativo":
-            self.reb_pu = "Operativo"
-            print("Rebaje puerta:" + self.reb_pu )
-
-        if seleccion == "Rebaje puerta: No Operativo":
-            self.reb_pu = "No Operativo"
-            print("Rebaje puerta:" + self.reb_pu )
-
-        if seleccion == "Otro vent: Operativo":
-            self.otra_vent = "Operativo"
-            print("Otro vent:" + self.otra_vent )
-
-        if seleccion == "Otro vent: No Operativo":
-            self.otra_vent = "No Operativo"
-            print("Otro vent:" + self.otra_vent )
-
-        if seleccion == "Nulo":
-            self.afectacion = seleccion
-            print("afectacion:" + self.afectacion )
-
-        if seleccion == "Bajo":
-            self.afectacion = seleccion
-            print("afectacion:" + self.afectacion )
-
-        if seleccion == "Medio":
-            self.afectacion = seleccion
-            print("afectacion:" + self.afectacion )
-        
-        if seleccion == "Alto":
-            self.afectacion = seleccion
-            print("afectacion:" + self.afectacion )
-
-        if seleccion == "Calefacción: Eléctrico":
-            self.calefaccion = "Eléctrico"
-            print("Calefacción:" + self.calefaccion )
-
-        if seleccion == "Calefacción: Gas / parafina con evacuacipon exterior (seca)":
-            self.calefaccion = "Gas / parafina con evacuacipon exterior (seca)"
-            print("Calefacción:" + self.calefaccion )
-
-        if seleccion == "Calefacción: Biomasa con evacuación exterior (seca)":
-            self.calefaccion = "Biomasa con evacuación exterior (seca)"
-            print("Calefacción:" + self.calefaccion )
-        
-        if seleccion == "Calefacción: Parafina/gas móvil (húmeda)":
-            self.calefaccion = "Parafina/gas móvil (húmeda)"
-            print("Calefacción:" + self.calefaccion )
-        
-
-
-
-
-    h1_afectacion_h2=""
-    en_esq_muro_h2=""
-    en_cie_muro_h2=""
-    en_pis_muro_h2=""
-    ras_ven_h2=""
-    baj_ven_h2=""
-    ar_cen_h2=""
-    pun_loc_h2=""
-    d_en_esq_muro_h2=""
-    d_en_cie_muro_h2=""
-    d_en_pis_muro_h2=""
-    d_ras_ven_h2=""
-    d_baj_ven_h2=""
-    d_ar_cen_h2=""
-    d_pun_loc_h2=""
-    def guardar_checkbox_h1_me2(self, seleccion):
-        
-        if seleccion == "Nulo":
-            self.h1_afectacion_h2 = seleccion
-            print("afectacion:" + self.h1_afectacion_h2)
-
-        if seleccion == "Bajo":
-            self.h1_afectacion_h2 = seleccion
-            print("afectacion:" + self.h1_afectacion_h2)
-
-        if seleccion == "Medio":
-            self.h1_afectacion_h2 = seleccion
-            print("afectacion:" + self.h1_afectacion_h2)
-        
-        if seleccion == "Alto":
-            self.h1_afectacion_h2 = seleccion
-            print("afectacion:" + self.h1_afectacion_h2)
-        
-        if seleccion == "Encuentro esquina muro mancha: Si":
-            self.en_esq_muro_h2 = "Si"
-            print("Encuentro esquina muro mancha: " + self.en_esq_muro_h2 )
-
-        if seleccion == "Encuentro esquina muro mancha: No":
-            self.en_esq_muro_h2 = "No"
-            print("Encuentro esquina muro mancha: " + self.en_esq_muro_h2 )
-
-        if seleccion == "Encuentro cielo muro mancha: Si":
-            self.en_cie_muro_h2 = "Si"
-            print("Encuentro cielo muro mancha: " + self.en_cie_muro_h2 )
-        
-        if seleccion == "Encuentro cielo muro mancha: No":
-            self.en_cie_muro_h2 = "No"
-            print("Encuentro cielo muro mancha: " + self.en_cie_muro_h2 )
-
-        if seleccion == "Encuentro piso muro mancha: Si":
-            self.en_pis_muro_h2 = "Si"
-            print("Encuentro piso muro mancha: " + self.en_pis_muro_h2 )
-        
-        if seleccion == "Encuentro piso muro mancha: No":
-            self.en_pis_muro_h2 = "No"
-            print("Encuentro piso muro mancha:: " + self.en_pis_muro_h2 )
-
-        if seleccion == "Rasgo de ventana mancha: Si":
-            self.ras_ven_h2 = "Si"
-            print("Rasgo de ventana mancha " + self.ras_ven_h2 )
-
-        if seleccion == "Rasgo de ventana mancha: No":
-            self.ras_ven_h2 = "No"
-            print("Rasgo de ventana mancha: " + self.ras_ven_h2 )
-
-        if seleccion == "Bajo ventana (antepecho) mancha: Si":
-            self.baj_ven_h2 = "Si"
-            print("Bajo ventana (antepecho) mancha:" + self.baj_ven_h2 )
-
-        if seleccion == "Bajo ventana (antepecho) mancha: No":
-            self.baj_ven_h2 = "No"
-            print("Bajo ventana (antepecho) mancha:" + self.baj_ven_h2 )
-
-        if seleccion == "Área central mancha: Si":
-            self.ar_cen_h2 = "Si"
-            print("Área central mancha:" + self.ar_cen_h2 )
-
-        if seleccion == "Área central mancha: No":
-            self.ar_cen_h2 = "No"
-            print("Área central mancha: " + self.ar_cen_h2 )
-
-        if seleccion == "Puntual localizada y/o extendida mancha: Si":
-            self.pun_loc_h2 = "Si"
-            print("Puntual localizada y/o extendida mancha:" + self.pun_loc_h2 )
-
-        if seleccion == "Puntual localizada y/o extendida mancha: No":
-            self.pun_loc_h2 = "No"
-            print("Puntual localizada y/o extendida mancha:" + self.pun_loc_h2 )
-
-        
-
-        if seleccion == "Encuentro esquina muro daño: Si":
-            self.d_en_esq_muro_h2 = "Si"
-            print("Encuentro esquina muro daño: " + self.d_en_esq_muro_h2 )
-
-        if seleccion == "Encuentro esquina muro daño: No":
-            self.d_en_esq_muro_h2 = "No"
-            print("Encuentro esquina muro daño: " + self.d_en_esq_muro_h2 )
-
-        if seleccion == "Encuentro cielo muro daño: Si":
-            self.d_en_cie_muro_h2 = "Si"
-            print("Encuentro cielo muro daño: " + self.d_en_cie_muro_h2 )
-        
-        if seleccion == "Encuentro cielo muro daño: No":
-            self.d_en_cie_muro_h2 = "No"
-            print("Encuentro cielo muro daño: " + self.d_en_cie_muro_h2 )
-
-        if seleccion == "Encuentro piso muro daño: Si":
-            self.d_en_pis_muro_h2 = "Si"
-            print("Encuentro piso muro daño: " + self.d_en_pis_muro_h2 )
-        
-        if seleccion == "Encuentro piso muro daño: No":
-            self.d_en_pis_muro_h2 = "No"
-            print("Encuentro piso muro daño:: " + self.d_en_pis_muro_h2 )
-
-        if seleccion == "Rasgo de ventana daño: Si":
-            self.d_ras_ven_h2 = "Si"
-            print("Rasgo de ventana daño " + self.d_ras_ven_h2 )
-
-        if seleccion == "Rasgo de ventana daño: No":
-            self.d_ras_ven_h2 = "No"
-            print("Rasgo de ventana daño: " + self.d_ras_ven_h2 )
-
-        if seleccion == "Bajo ventana (antepecho) daño: Si":
-            self.d_baj_ven_h2 = "Si"
-            print("Bajo ventana (antepecho) daño:" + self.d_baj_ven_h2 )
-
-        if seleccion == "Bajo ventana (antepecho) daño: No":
-            self.d_baj_ven_h2 = "No"
-            print("Bajo ventana (antepecho) daño:" + self.d_baj_ven_h2 )
-
-        if seleccion == "Área central daño: Si":
-            self.d_ar_cen_h2 = "Si"
-            print("Área central daño:" + self.d_ar_cen_h2 )
-
-        if seleccion == "Área central daño: No":
-            self.d_ar_cen_h2 = "No"
-            print("Área central daño: " + self.d_ar_cen_h2 )
-
-        if seleccion == "Puntual localizada y/o extendida daño: Si":
-            self.d_pun_loc_h2 = "Si"
-            print("Puntual localizada y/o extendida daño:" + self.d_pun_loc_h2 )
-
-        if seleccion == "Puntual localizada y/o extendida daño: No":
-            self.d_pun_loc_h2 = "No"
-            print("Puntual localizada y/o extendida daño:" + self.d_pun_loc_h2 )
-
-        
-        
-        
+            self.redirigir_pantalla_dialogo("info_general", dialogo_h) 
+
+        if hoja == "H1 Hoja 3":
+            self.h1_me3=0
+            self.redirigir_pantalla_dialogo("info_general", dialogo_h) 
+
+        if hoja == "H1 Piso-Cielo":
+            self.h1_pi_cie=0
+            self.redirigir_pantalla_dialogo("info_general", dialogo_h) 
 
 
 
@@ -597,22 +147,8 @@ class CitecUbbApp(MDApp):
         dialog.dismiss()
 
 
-   
-    #Flags
-    h1_mea=0
-    def asig_h1_mea(self):
-        self.h1_mea=1
-        print("h1_mea= ", + self.h1_mea)
 
-    h1_me2=0
-    def asig_h1_me2(self):
-        self.h1_me2=1
-        print("h1_me2= ", + self.h1_me2)
-
-
-    
-
-
+    #Dialogo Guardar
     def mostrar_dialogo_guardar(self):
         textfield = MDTextField(
             hint_text="Nombre del Archivo:",
@@ -643,6 +179,609 @@ class CitecUbbApp(MDApp):
         dialog.open()
 
 
+        
+
+
+
+
+    
+
+
+    clima=""
+    recibido_por=""
+    ampliaciones=""
+    reparaciones=""
+    def guardar_checkbox(self, seleccion):
+        if seleccion == "Soleado":
+            self.clima = seleccion
+            
+        if seleccion == "Nublado":
+            self.clima = seleccion
+
+        if seleccion == "Lluvioso":
+            self.clima = seleccion
+
+        if seleccion == "Parcialmente Nublado":
+            self.clima = seleccion
+
+        if seleccion == "Propietario":
+            self.recibido_por = seleccion
+
+        if seleccion == "Arrendatario":
+            self.recibido_por = seleccion
+
+        if seleccion == "Otro":
+            self.recibido_por = seleccion
+        
+        if seleccion == "Ampliaciones: Si":
+            self.ampliaciones = "Si"
+
+        if seleccion == "Ampliaciones: No":
+            self.ampliaciones = "No"
+
+        if seleccion == "Reparaciones: Si":
+            self.reparaciones = "Si"
+
+        if seleccion == "Reparaciones: No":
+            self.reparaciones = "No"
+
+
+    pat_vis=""
+    olor=""
+    manif=""
+    modif=""
+    en_esq_muro=""
+    en_cie_muro=""
+    en_pis_muro=""
+    ras_ven=""
+    baj_ven=""
+    ar_cen=""
+    pun_loc=""
+    d_en_esq_muro=""
+    d_en_cie_muro=""
+    d_en_pis_muro=""
+    d_ras_ven=""
+    d_baj_ven=""
+    d_ar_cen=""
+    d_pun_loc=""
+    aireador=""
+    extractor=""
+    campana=""
+    cel_pu=""
+    reb_pu=""
+    otra_vent=""
+    afectacion=""
+    calefaccion=""
+    def guardar_checkbox_h1_mea(self, seleccion):
+        if seleccion == "Patologias: Si":
+            self.pat_vis = "Si"
+
+        if seleccion == "Patologias: No":
+            self.pat_vis = "No"
+        
+        if seleccion == "Olor: Si":
+            self.olor = "Si"
+        
+        if seleccion == "Olor: No":
+            self.olor = "No"
+
+        if seleccion == "Manifestaciones: Si":
+            self.manif = "Si"
+
+        if seleccion == "Manifestaciones: No":
+            self.manif = "No"
+        
+        if seleccion == "Modificaciones: Si":
+            self.modif = "Si"
+        
+        if seleccion == "Modificaciones: No":
+            self.modif = "No"
+
+
+
+        if seleccion == "Encuentro esquina muro mancha: Si":
+            self.en_esq_muro = "Si"
+
+        if seleccion == "Encuentro esquina muro mancha: No":
+            self.en_esq_muro = "No"
+
+        if seleccion == "Encuentro cielo muro mancha: Si":
+            self.en_cie_muro = "Si"
+        
+        if seleccion == "Encuentro cielo muro mancha: No":
+            self.en_cie_muro = "No"
+
+        if seleccion == "Encuentro piso muro mancha: Si":
+            self.en_pis_muro = "Si"
+        
+        if seleccion == "Encuentro piso muro mancha: No":
+            self.en_pis_muro = "No"
+
+        if seleccion == "Rasgo de ventana mancha: Si":
+            self.ras_ven = "Si"
+
+        if seleccion == "Rasgo de ventana mancha: No":
+            self.ras_ven = "No"
+
+        if seleccion == "Bajo ventana (antepecho) mancha: Si":
+            self.baj_ven = "Si"
+
+        if seleccion == "Bajo ventana (antepecho) mancha: No":
+            self.baj_ven = "No"
+
+        if seleccion == "Área central mancha: Si":
+            self.ar_cen = "Si"
+
+        if seleccion == "Área central mancha: No":
+            self.ar_cen = "No"
+
+        if seleccion == "Puntual localizada y/o extendida mancha: Si":
+            self.pun_loc = "Si"
+
+        if seleccion == "Puntual localizada y/o extendida mancha: No":
+            self.pun_loc = "No"
+
+        
+
+        if seleccion == "Encuentro esquina muro daño: Si":
+            self.d_en_esq_muro = "Si"
+
+        if seleccion == "Encuentro esquina muro daño: No":
+            self.d_en_esq_muro = "No"
+
+        if seleccion == "Encuentro cielo muro daño: Si":
+            self.d_en_cie_muro = "Si"
+        
+        if seleccion == "Encuentro cielo muro daño: No":
+            self.d_en_cie_muro = "No"
+
+        if seleccion == "Encuentro piso muro daño: Si":
+            self.d_en_pis_muro = "Si"
+        
+        if seleccion == "Encuentro piso muro daño: No":
+            self.d_en_pis_muro = "No"
+
+        if seleccion == "Rasgo de ventana daño: Si":
+            self.d_ras_ven = "Si"
+
+        if seleccion == "Rasgo de ventana daño: No":
+            self.d_ras_ven = "No"
+
+        if seleccion == "Bajo ventana (antepecho) daño: Si":
+            self.d_baj_ven = "Si"
+
+        if seleccion == "Bajo ventana (antepecho) daño: No":
+            self.d_baj_ven = "No"
+
+        if seleccion == "Área central daño: Si":
+            self.d_ar_cen = "Si"
+
+        if seleccion == "Área central daño: No":
+            self.d_ar_cen = "No"
+
+        if seleccion == "Puntual localizada y/o extendida daño: Si":
+            self.d_pun_loc = "Si"
+
+        if seleccion == "Puntual localizada y/o extendida daño: No":
+            self.d_pun_loc = "No"
+
+
+
+        if seleccion == "Aireador: Operativo":
+            self.aireador = "Operativo"
+
+        if seleccion == "Aireador: No Operativo":
+            self.aireador = "No Operativo"
+
+        if seleccion == "Extractor: Operativo":
+            self.extractor = "Operativo"
+
+        if seleccion == "Extractor: No Operativo":
+            self.extractor = "No Operativo"
+
+        if seleccion == "Campana: Operativo":
+            self.campana = "Operativo"
+
+        if seleccion == "Campana: No Operativo":
+            self.campana = "No Operativo"
+
+        if seleccion == "Celosía puerta: Operativo":
+            self.cel_pu = "Operativo"
+
+        if seleccion == "Celosía puerta: No Operativo":
+            self.cel_pu = "No Operativo"
+
+        if seleccion == "Rebaje puerta: Operativo":
+            self.reb_pu = "Operativo"
+
+        if seleccion == "Rebaje puerta: No Operativo":
+            self.reb_pu = "No Operativo"
+
+        if seleccion == "Otro vent: Operativo":
+            self.otra_vent = "Operativo"
+
+        if seleccion == "Otro vent: No Operativo":
+            self.otra_vent = "No Operativo"
+
+        if seleccion == "Nulo":
+            self.afectacion = seleccion
+
+        if seleccion == "Bajo":
+            self.afectacion = seleccion
+
+        if seleccion == "Medio":
+            self.afectacion = seleccion
+        
+        if seleccion == "Alto":
+            self.afectacion = seleccion
+
+        if seleccion == "Calefacción: Eléctrico":
+            self.calefaccion = "Eléctrico"
+
+        if seleccion == "Calefacción: Gas / parafina con evacuacipon exterior (seca)":
+            self.calefaccion = "Gas / parafina con evacuacipon exterior (seca)"
+
+        if seleccion == "Calefacción: Biomasa con evacuación exterior (seca)":
+            self.calefaccion = "Biomasa con evacuación exterior (seca)"
+        
+        if seleccion == "Calefacción: Parafina/gas móvil (húmeda)":
+            self.calefaccion = "Parafina/gas móvil (húmeda)"
+        
+
+
+
+
+    h1_afectacion_h2=""
+    en_esq_muro_h2=""
+    en_cie_muro_h2=""
+    en_pis_muro_h2=""
+    ras_ven_h2=""
+    baj_ven_h2=""
+    ar_cen_h2=""
+    pun_loc_h2=""
+    d_en_esq_muro_h2=""
+    d_en_cie_muro_h2=""
+    d_en_pis_muro_h2=""
+    d_ras_ven_h2=""
+    d_baj_ven_h2=""
+    d_ar_cen_h2=""
+    d_pun_loc_h2=""
+    def guardar_checkbox_h1_me2(self, seleccion):
+        
+        if seleccion == "Nulo":
+            self.h1_afectacion_h2 = seleccion
+
+        if seleccion == "Bajo":
+            self.h1_afectacion_h2 = seleccion
+
+        if seleccion == "Medio":
+            self.h1_afectacion_h2 = seleccion
+        
+        if seleccion == "Alto":
+            self.h1_afectacion_h2 = seleccion
+        
+        if seleccion == "Encuentro esquina muro mancha: Si":
+            self.en_esq_muro_h2 = "Si"
+
+        if seleccion == "Encuentro esquina muro mancha: No":
+            self.en_esq_muro_h2 = "No"
+
+        if seleccion == "Encuentro cielo muro mancha: Si":
+            self.en_cie_muro_h2 = "Si"
+        
+        if seleccion == "Encuentro cielo muro mancha: No":
+            self.en_cie_muro_h2 = "No"
+
+        if seleccion == "Encuentro piso muro mancha: Si":
+            self.en_pis_muro_h2 = "Si"
+        
+        if seleccion == "Encuentro piso muro mancha: No":
+            self.en_pis_muro_h2 = "No"
+
+        if seleccion == "Rasgo de ventana mancha: Si":
+            self.ras_ven_h2 = "Si"
+
+        if seleccion == "Rasgo de ventana mancha: No":
+            self.ras_ven_h2 = "No"
+
+        if seleccion == "Bajo ventana (antepecho) mancha: Si":
+            self.baj_ven_h2 = "Si"
+
+        if seleccion == "Bajo ventana (antepecho) mancha: No":
+            self.baj_ven_h2 = "No"
+
+        if seleccion == "Área central mancha: Si":
+            self.ar_cen_h2 = "Si"
+
+        if seleccion == "Área central mancha: No":
+            self.ar_cen_h2 = "No"
+
+        if seleccion == "Puntual localizada y/o extendida mancha: Si":
+            self.pun_loc_h2 = "Si"
+
+        if seleccion == "Puntual localizada y/o extendida mancha: No":
+            self.pun_loc_h2 = "No"
+
+        if seleccion == "Encuentro esquina muro daño: Si":
+            self.d_en_esq_muro_h2 = "Si"
+
+        if seleccion == "Encuentro esquina muro daño: No":
+            self.d_en_esq_muro_h2 = "No"
+
+        if seleccion == "Encuentro cielo muro daño: Si":
+            self.d_en_cie_muro_h2 = "Si"
+        
+        if seleccion == "Encuentro cielo muro daño: No":
+            self.d_en_cie_muro_h2 = "No"
+
+        if seleccion == "Encuentro piso muro daño: Si":
+            self.d_en_pis_muro_h2 = "Si"
+        
+        if seleccion == "Encuentro piso muro daño: No":
+            self.d_en_pis_muro_h2 = "No"
+
+        if seleccion == "Rasgo de ventana daño: Si":
+            self.d_ras_ven_h2 = "Si"
+
+        if seleccion == "Rasgo de ventana daño: No":
+            self.d_ras_ven_h2 = "No"
+
+        if seleccion == "Bajo ventana (antepecho) daño: Si":
+            self.d_baj_ven_h2 = "Si"
+
+        if seleccion == "Bajo ventana (antepecho) daño: No":
+            self.d_baj_ven_h2 = "No"
+
+        if seleccion == "Área central daño: Si":
+            self.d_ar_cen_h2 = "Si"
+
+        if seleccion == "Área central daño: No":
+            self.d_ar_cen_h2 = "No"
+
+        if seleccion == "Puntual localizada y/o extendida daño: Si":
+            self.d_pun_loc_h2 = "Si"
+
+        if seleccion == "Puntual localizada y/o extendida daño: No":
+            self.d_pun_loc_h2 = "No"
+
+
+
+
+
+    h1_afectacion_h3=""
+    en_esq_muro_h3=""
+    en_cie_muro_h3=""
+    en_pis_muro_h3=""
+    ras_ven_h3=""
+    baj_ven_h3=""
+    ar_cen_h3=""
+    pun_loc_h3=""
+    d_en_esq_muro_h3=""
+    d_en_cie_muro_h3=""
+    d_en_pis_muro_h3=""
+    d_ras_ven_h3=""
+    d_baj_ven_h3=""
+    d_ar_cen_h3=""
+    d_pun_loc_h3=""
+    def guardar_checkbox_h1_me3(self, seleccion):
+        
+        if seleccion == "Nulo":
+            self.h1_afectacion_h3 = seleccion
+
+        if seleccion == "Bajo":
+            self.h1_afectacion_h3 = seleccion
+
+        if seleccion == "Medio":
+            self.h1_afectacion_h3 = seleccion
+        
+        if seleccion == "Alto":
+            self.h1_afectacion_h3 = seleccion
+        
+        if seleccion == "Encuentro esquina muro mancha: Si":
+            self.en_esq_muro_h3 = "Si"
+
+        if seleccion == "Encuentro esquina muro mancha: No":
+            self.en_esq_muro_h3 = "No"
+
+        if seleccion == "Encuentro cielo muro mancha: Si":
+            self.en_cie_muro_h3 = "Si"
+        
+        if seleccion == "Encuentro cielo muro mancha: No":
+            self.en_cie_muro_h3 = "No"
+
+        if seleccion == "Encuentro piso muro mancha: Si":
+            self.en_pis_muro_h3 = "Si"
+        
+        if seleccion == "Encuentro piso muro mancha: No":
+            self.en_pis_muro_h3 = "No"
+
+        if seleccion == "Rasgo de ventana mancha: Si":
+            self.ras_ven_h3 = "Si"
+
+        if seleccion == "Rasgo de ventana mancha: No":
+            self.ras_ven_h3 = "No"
+
+        if seleccion == "Bajo ventana (antepecho) mancha: Si":
+            self.baj_ven_h3 = "Si"
+
+        if seleccion == "Bajo ventana (antepecho) mancha: No":
+            self.baj_ven_h3 = "No"
+
+        if seleccion == "Área central mancha: Si":
+            self.ar_cen_h3 = "Si"
+
+        if seleccion == "Área central mancha: No":
+            self.ar_cen_h3 = "No"
+
+        if seleccion == "Puntual localizada y/o extendida mancha: Si":
+            self.pun_loc_h3 = "Si"
+
+        if seleccion == "Puntual localizada y/o extendida mancha: No":
+            self.pun_loc_h3 = "No"
+
+
+        if seleccion == "Encuentro esquina muro daño: Si":
+            self.d_en_esq_muro_h3 = "Si"
+
+        if seleccion == "Encuentro esquina muro daño: No":
+            self.d_en_esq_muro_h3 = "No"
+
+        if seleccion == "Encuentro cielo muro daño: Si":
+            self.d_en_cie_muro_h3 = "Si"
+        
+        if seleccion == "Encuentro cielo muro daño: No":
+            self.d_en_cie_muro_h3 = "No"
+
+        if seleccion == "Encuentro piso muro daño: Si":
+            self.d_en_pis_muro_h3 = "Si"
+        
+        if seleccion == "Encuentro piso muro daño: No":
+            self.d_en_pis_muro_h3 = "No"
+
+        if seleccion == "Rasgo de ventana daño: Si":
+            self.d_ras_ven_h3 = "Si"
+
+        if seleccion == "Rasgo de ventana daño: No":
+            self.d_ras_ven_h3 = "No"
+
+        if seleccion == "Bajo ventana (antepecho) daño: Si":
+            self.d_baj_ven_h3 = "Si"
+
+        if seleccion == "Bajo ventana (antepecho) daño: No":
+            self.d_baj_ven_h3 = "No"
+
+        if seleccion == "Área central daño: Si":
+            self.d_ar_cen_h3 = "Si"
+
+        if seleccion == "Área central daño: No":
+            self.d_ar_cen_h3 = "No"
+
+        if seleccion == "Puntual localizada y/o extendida daño: Si":
+            self.d_pun_loc_h3 = "Si"
+
+        if seleccion == "Puntual localizada y/o extendida daño: No":
+            self.d_pun_loc_h3 = "No"
+        
+    
+
+
+    h1_piso_niv_afe=""
+    h1_cielo_niv_afe=""
+    h1_per_piso_m=""
+    h1_ar_cen_piso_m=""
+    h1_pun_loc_piso_m=""
+    h1_per_piso_d=""
+    h1_ar_cen_piso_d=""
+    h1_pun_loc_piso_d=""
+    h1_per_cielo_m=""
+    h1_ar_cen_cielo_m=""
+    h1_pun_loc_cielo_m=""
+    h1_per_cielo_d=""
+    h1_ar_cen_cielo_d=""
+    h1_pun_loc_cielo_d=""
+    def guardar_checkbox_h1_pi_cie(self, seleccion):
+
+        if seleccion == "Piso Nulo":
+            self.h1_piso_niv_afe = "Nulo"
+
+        if seleccion == "Piso Bajo":
+            self.h1_piso_niv_afe = "Bajo"
+
+        if seleccion == "Piso Medio":
+            self.h1_piso_niv_afe = "Medio"
+
+        
+        if seleccion == "Piso Alto":
+            self.h1_piso_niv_afe = "Alto"
+
+        #Afectacion Cielo
+        if seleccion == "Cielo Nulo":
+            self.h1_cielo_niv_afe = seleccion
+
+        if seleccion == "Cielo Bajo":
+            self.h1_cielo_niv_afe = seleccion
+            
+        if seleccion == "Cielo Medio":
+            self.h1_cielo_niv_afe = seleccion
+           
+        if seleccion == "Cielo Alto":
+            self.h1_cielo_niv_afe = seleccion
+
+        #piso
+        if seleccion == "Perímetro piso mancha: Si":
+            self.h1_per_piso_m = "Si"
+
+        if seleccion == "Perímetro piso mancha: No":
+            self.h1_per_piso_m = "No"
+
+        if seleccion == "Área central piso mancha: Si":
+            self.h1_ar_cen_piso_m = "Si"
+        
+        if seleccion == "Área central piso mancha: No":
+            self.h1_ar_cen_piso_m = "No"
+
+        if seleccion == "Puntual localizada y/o extendida piso mancha: Si":
+            self.h1_pun_loc_piso_m = "Si"
+        
+        if seleccion == "Puntual localizada y/o extendida piso mancha: No":
+            self.h1_pun_loc_piso_m = "No"
+
+        if seleccion == "Perímetro piso daño: Si":
+            self.h1_per_piso_d = "Si"
+
+        if seleccion == "Perímetro piso daño: No":
+            self.h1_per_piso_d = "No"
+
+        if seleccion == "Área central piso daño: Si":
+            self.h1_ar_cen_piso_d = "Si"
+        
+        if seleccion == "Área central piso daño: No":
+            self.h1_ar_cen_piso_d = "No"
+
+        if seleccion == "Puntual localizada y/o extendida piso daño: Si":
+            self.h1_pun_loc_piso_d = "Si"
+        
+        if seleccion == "Puntual localizada y/o extendida piso daño: No":
+            self.h1_pun_loc_piso_d = "No"
+
+        #Cielo
+        if seleccion == "Perímetro cielo mancha: Si":
+            self.h1_per_cielo_m = "Si"
+
+        if seleccion == "Perímetro cielo mancha: No":
+            self.h1_per_cielo_m = "No"
+
+        if seleccion == "Área central cielo mancha: Si":
+            self.h1_ar_cen_cielo_m = "Si"
+        
+        if seleccion == "Área central cielo mancha: No":
+            self.h1_ar_cen_cielo_m = "No"
+
+        if seleccion == "Puntual localizada y/o extendida cielo mancha: Si":
+            self.h1_pun_loc_cielo_m = "Si"
+        
+        if seleccion == "Puntual localizada y/o extendida cielo mancha: No":
+            self.h1_pun_loc_cielo_m = "No"
+
+        if seleccion == "Perímetro cielo daño: Si":
+            self.h1_per_cielo_d = "Si"
+
+        if seleccion == "Perímetro cielo daño: No":
+            self.h1_per_cielo_d = "No"
+
+        if seleccion == "Área central cielo daño: Si":
+            self.h1_ar_cen_cielo_d = "Si"
+        
+        if seleccion == "Área central cielo daño: No":
+            self.h1_ar_cen_cielo_d = "No"
+
+        if seleccion == "Puntual localizada y/o extendida cielo daño: Si":
+            self.h1_pun_loc_cielo_d = "Si"
+        
+        if seleccion == "Puntual localizada y/o extendida cielo daño: No":
+            self.h1_pun_loc_cielo_d = "No"
+
+
 
 
 
@@ -660,13 +799,12 @@ class CitecUbbApp(MDApp):
 
 
         #Dar nombre al archivo creado
-        dir_plantilla_general = "Plantillas/Plantilla_info_general.xlsx"
+        dir_plantilla_general = "Plantilla_info_general.xlsx"
         dir_nuevo_archivo = nombre_archivo + " (" + fecha + ")" + ".xlsx" 
         shutil.copy(dir_plantilla_general, dir_nuevo_archivo)
 
         #Carga de la plantilla
         libro = load_workbook(filename=dir_nuevo_archivo)
-        print('Se abrio el archivo con nombre:', dir_nuevo_archivo)
 
         #Datos Automaticos
         informacion_general = libro['Informacion_General']
@@ -853,15 +991,136 @@ class CitecUbbApp(MDApp):
             if self.h1_afectacion_h2 == "Alto":
                 H1_Muro_Eje_2['P23'] = "X"
 
-
-
         #Eliminar H1 Hoja2
         if self.h1_me2==0:
             hoja_a_eliminar = libro["H1_Muro_Eje_2"]
             libro.remove(hoja_a_eliminar)
+
+
+
+
+        #Guardar H1 Muro Eje 3
+        if self.h1_me3==1:
+            H1_Muro_Eje_3 = libro['H1_Muro_Eje_3']
+            H1_Muro_Eje_3['C7'] = self.root.ids.nombre_habitacion1.text
+            H1_Muro_Eje_3['F22'] = self.root.ids.h1_me3_m_perimetral.text
+            H1_Muro_Eje_3['F23'] = self.root.ids.h1_me3_m_interior.text
+            H1_Muro_Eje_3['J21'] = self.root.ids.h1_me3_sup_mur.text
+            H1_Muro_Eje_3['P21'] = self.root.ids.h1_me3_sup_ven.text
+            H1_Muro_Eje_3['G35'] = self.root.ids.total_sup_afec_h3.text
+
+            #Superficie afectada
+            H1_Muro_Eje_3['K28'] = self.root.ids.sup_afe_esq_muro_h3.text
+            H1_Muro_Eje_3['K29'] = self.root.ids.sup_afe_cie_muro_h3.text
+            H1_Muro_Eje_3['K30'] = self.root.ids.sup_afe_pis_muro_h3.text
+            H1_Muro_Eje_3['K31'] = self.root.ids.sup_afe_ras_ven_h3.text
+            H1_Muro_Eje_3['K32'] = self.root.ids.sup_afe_baj_ven_h3.text
+            H1_Muro_Eje_3['K33'] = self.root.ids.sup_afe_ar_cen_h3.text
+            H1_Muro_Eje_3['K34'] = self.root.ids.sup_afe_pun_loc_h3.text
+
+            H1_Muro_Eje_3['Q28'] = self.root.ids.d_sup_afe_esq_muro_h3.text
+            H1_Muro_Eje_3['Q29'] = self.root.ids.d_sup_afe_cie_muro_h3.text
+            H1_Muro_Eje_3['Q30'] = self.root.ids.d_sup_afe_pis_muro_h3.text
+            H1_Muro_Eje_3['Q31'] = self.root.ids.d_sup_afe_ras_ven_h3.text
+            H1_Muro_Eje_3['Q32'] = self.root.ids.d_sup_afe_baj_ven_h3.text
+            H1_Muro_Eje_3['Q33'] = self.root.ids.d_sup_afe_ar_cen_h3.text
+            H1_Muro_Eje_3['Q34'] = self.root.ids.d_sup_afe_pun_loc_h3.text
+
+            #Si o No
+            H1_Muro_Eje_3['G28']=self.en_esq_muro_h3
+            H1_Muro_Eje_3['G29']=self.en_cie_muro_h3
+            H1_Muro_Eje_3['G30']=self.en_pis_muro_h3
+            H1_Muro_Eje_3['G31']=self.ras_ven_h3
+            H1_Muro_Eje_3['G32']=self.baj_ven_h3
+            H1_Muro_Eje_3['G33']=self.ar_cen_h3
+            H1_Muro_Eje_3['G34']=self.pun_loc_h3
+
+            H1_Muro_Eje_3['M28']=self.d_en_esq_muro_h3
+            H1_Muro_Eje_3['M29']=self.d_en_cie_muro_h3
+            H1_Muro_Eje_3['M30']=self.d_en_pis_muro_h3
+            H1_Muro_Eje_3['M31']=self.d_ras_ven_h3
+            H1_Muro_Eje_3['M32']=self.d_baj_ven_h3
+            H1_Muro_Eje_3['M33']=self.d_ar_cen_h3
+            H1_Muro_Eje_3['M34']=self.d_pun_loc_h3
+
+            #nivel de afectacion
+            if self.h1_afectacion_h3 == "Nulo":
+                H1_Muro_Eje_3['J23'] = "X"
+            if self.h1_afectacion_h3 == "Bajo":
+                H1_Muro_Eje_3['L23'] = "X"
+            if self.h1_afectacion_h3 == "Medio":
+                H1_Muro_Eje_3['N23'] = "X"
+            if self.h1_afectacion_h3 == "Alto":
+                H1_Muro_Eje_3['P23'] = "X"
+
+
+
+        #Eliminar H1 Hoja3
+        if self.h1_me3==0:
+            hoja_a_eliminar = libro["H1_Muro_Eje_3"]
+            libro.remove(hoja_a_eliminar)
+
+
+
+
+        #Guardar H1 Piso -Cielo
+        if self.h1_pi_cie==1:
+            H1_Piso_Cielo = libro['H1_Piso_Cielo']
+            H1_Piso_Cielo['C7'] = self.root.ids.nombre_habitacion1.text
+            H1_Piso_Cielo['J21'] = self.root.ids.H1_Sup_piso.text
+            H1_Piso_Cielo['G31'] = self.root.ids.H1_total_sup_piso_afec.text
+            H1_Piso_Cielo['J51'] = self.root.ids.H1_Sup_cielo.text
+            H1_Piso_Cielo['G61'] = self.root.ids.H1_total_sup_cielo_afec.text
+
+            H1_Piso_Cielo['G28'] = self.h1_per_piso_m
+            H1_Piso_Cielo['G29'] = self.h1_ar_cen_piso_m
+            H1_Piso_Cielo['G30'] = self.h1_pun_loc_piso_m
+            H1_Piso_Cielo['M28'] = self.h1_per_piso_d
+            H1_Piso_Cielo['M29'] = self.h1_ar_cen_piso_d
+            H1_Piso_Cielo['M30'] = self.h1_pun_loc_piso_d
+            H1_Piso_Cielo['K28'] = self.root.ids.h1_per_piso_sup_afe.text
+            H1_Piso_Cielo['K29'] = self.root.ids.h1_ar_cen_piso_sup_afe.text
+            H1_Piso_Cielo['K30'] = self.root.ids.h1_pun_loc_piso_sup_afe.text
+            H1_Piso_Cielo['Q28'] = self.root.ids.h1_d_per_piso_sup_afe.text
+            H1_Piso_Cielo['Q29'] = self.root.ids.h1_d_ar_cen_piso_sup_afe.text
+            H1_Piso_Cielo['Q30'] = self.root.ids.h1_d_pun_loc_piso_sup_afe.text
+
+            H1_Piso_Cielo['G58'] = self.h1_per_cielo_m
+            H1_Piso_Cielo['G59'] = self.h1_ar_cen_cielo_m
+            H1_Piso_Cielo['G60'] = self.h1_pun_loc_cielo_m
+            H1_Piso_Cielo['M58'] = self.h1_per_cielo_d
+            H1_Piso_Cielo['M59'] = self.h1_ar_cen_cielo_d
+            H1_Piso_Cielo['M60'] = self.h1_pun_loc_cielo_d
+            H1_Piso_Cielo['K58'] = self.root.ids.h1_per_cielo_sup_afe.text
+            H1_Piso_Cielo['K59'] = self.root.ids.h1_ar_cen_cielo_sup_afe.text
+            H1_Piso_Cielo['K60'] = self.root.ids.h1_pun_loc_cielo_sup_afe.text
+            H1_Piso_Cielo['Q58'] = self.root.ids.h1_d_per_cielo_sup_afe.text
+            H1_Piso_Cielo['Q59'] = self.root.ids.h1_d_ar_cen_cielo_sup_afe.text
+            H1_Piso_Cielo['Q60'] = self.root.ids.h1_d_pun_loc_cielo_sup_afe.text
+
+            if self.h1_piso_niv_afe == "Nulo":
+                H1_Piso_Cielo['J23'] = "X"
+            if self.h1_piso_niv_afe == "Bajo":
+                H1_Piso_Cielo['L23'] = "X"
+            if self.h1_piso_niv_afe == "Medio":
+                H1_Piso_Cielo['N23'] = "X"
+            if self.h1_piso_niv_afe == "Alto":
+                H1_Piso_Cielo['P23'] = "X"
+
+            if self.h1_cielo_niv_afe == "Nulo":
+                H1_Piso_Cielo['J53'] = "X"
+            if self.h1_cielo_niv_afe == "Bajo":
+                H1_Piso_Cielo['L53'] = "X"
+            if self.h1_cielo_niv_afe == "Medio":
+                H1_Piso_Cielo['N53'] = "X"
+            if self.h1_cielo_niv_afe == "Alto":
+                H1_Piso_Cielo['P53'] = "X"
+
+        if self.h1_pi_cie==0:
+            hoja_a_eliminar = libro["H1_Piso_Cielo"]
+            libro.remove(hoja_a_eliminar)
         
         libro.save(dir_nuevo_archivo)
-        print('El archivo se guardo con el nombre:', dir_nuevo_archivo)
 
 
 
@@ -878,28 +1137,31 @@ class CitecUbbApp(MDApp):
 
 
 
+    
+
+
+  #Flags
+    h1_mea=0
+    def asig_h1_mea(self):
+        self.h1_mea=1
+
+    h1_me2=0
+    def asig_h1_me2(self):
+        self.h1_me2=1
+
+    h1_me3=0
+    def asig_h1_me3(self):
+        self.h1_me3=1
+
+    h1_pi_cie=0
+    def asig_h1_pi_cie(self):
+        self.h1_pi_cie=1
 
 
 
 
 
 
-
-
-
-
-
-    def guardar_archivo(self, dialog, textfield):
-        # Obtener el valor ingresado en el textfield
-        nombre_ingresado = textfield.text
-        
-        self.guardar(nombre_ingresado)
-        
-        self.root.clear_widgets()
-        self.root = Builder.load_file('main.kv')
-        self.stop()
-        CitecUbbApp().run()
-        dialog.dismiss()
 
     
 if __name__ == '__main__':
