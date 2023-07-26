@@ -696,16 +696,16 @@ class CitecUbbApp(MDApp):
 
         #Afectacion Cielo
         if seleccion == "Cielo Nulo":
-            self.h1_cielo_niv_afe = seleccion
+            self.h1_cielo_niv_afe = "Nulo"
 
         if seleccion == "Cielo Bajo":
-            self.h1_cielo_niv_afe = seleccion
+            self.h1_cielo_niv_afe = "Bajo"
             
         if seleccion == "Cielo Medio":
-            self.h1_cielo_niv_afe = seleccion
+            self.h1_cielo_niv_afe = "Medio"
            
         if seleccion == "Cielo Alto":
-            self.h1_cielo_niv_afe = seleccion
+            self.h1_cielo_niv_afe = "Alto"
 
         #piso
         if seleccion == "Perímetro piso mancha: Si":
