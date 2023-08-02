@@ -1,1 +1,0 @@
-print('Se abre la Aplicaicon')

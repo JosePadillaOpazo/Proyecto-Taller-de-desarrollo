@@ -3,7 +3,6 @@ from kivy.lang import Builder
 from kivymd.uix.textfield import MDTextField
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton
-from kivymd.uix.scrollview import ScrollView
 import datetime
 import shutil
 from openpyxl import load_workbook

@@ -588,7 +588,58 @@ MDScreen:
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
 
-                                
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Nivel de afectación:"
+                                    font_style: "H6"
+                                    size: self.size
+
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "afectacion_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Nulo")
+
+                                    MDLabel:
+                                        text: "Nulo"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "afectacion_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Bajo")
+
+                                    MDLabel:
+                                        text: "Bajo"
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "afectacion_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Medio")
+
+                                    MDLabel:
+                                        text: "Medio"
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "afectacion_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_mea("Alto")
+
+                                    MDLabel:
+                                        text: "Alto"
+
                                
                             
                             #Checkboxes
@@ -1615,65 +1666,6 @@ MDScreen:
                                         text: "No Operativo"
 
 
-
-                            MDLabel:
-                                halign: "left"
-                                text: "Nivel de afectación:"
-                                font_style: "H6"
-                                size: self.size
-
-                            MDBoxLayout:
-                                orientation: 'horizontal'
-                                size_hint_y: None
-                                height: self.minimum_height
-                                
-
-                                MDCheckbox:
-                                    active: False
-                                    group: "afectacion_group"
-                                    size_hint: None, None
-                                    size: dp(48), dp(48)
-                                    on_press: app.guardar_checkbox_h1_mea("Nulo")
-
-                                MDLabel:
-                                    text: "Nulo"
-                                
-                                MDCheckbox:
-                                    active: False
-                                    group: "afectacion_group"
-                                    size_hint: None, None
-                                    size: dp(48), dp(48)
-                                    on_press: app.guardar_checkbox_h1_mea("Bajo")
-
-                                MDLabel:
-                                    text: "Bajo"
-
-                                MDCheckbox:
-                                    active: False
-                                    group: "afectacion_group"
-                                    size_hint: None, None
-                                    size: dp(48), dp(48)
-                                    on_press: app.guardar_checkbox_h1_mea("Medio")
-
-                                MDLabel:
-                                    text: "Medio"
-
-                                MDCheckbox:
-                                    active: False
-                                    group: "afectacion_group"
-                                    size_hint: None, None
-                                    size: dp(48), dp(48)
-                                    on_press: app.guardar_checkbox_h1_mea("Alto")
-
-                                MDLabel:
-                                    text: "Alto"
-
-
-
-                            
-
-
-
                             MDLabel:
                                 halign: "left"
                                 text: "Sistema de Calefacción:"
@@ -1820,7 +1812,57 @@ MDScreen:
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
 
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Nivel de afectación:"
+                                    font_style: "H6"
+                                    size: self.size
 
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "h2_afectacion_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_me2("Nulo")
+
+                                    MDLabel:
+                                        text: "Nulo"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "h2_afectacion_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_me2("Bajo")
+
+                                    MDLabel:
+                                        text: "Bajo"
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "h2_afectacion_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_me2("Medio")
+
+                                    MDLabel:
+                                        text: "Medio"
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "h2_afectacion_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_me2("Alto")
+
+                                    MDLabel:
+                                        text: "Alto"
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -2459,57 +2501,7 @@ MDScreen:
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
 
-                                MDLabel:
-                                    halign: "left"
-                                    text: "Nivel de afectación:"
-                                    font_style: "H6"
-                                    size: self.size
-
-                                MDBoxLayout:
-                                    orientation: 'horizontal'
-                                    size_hint_y: None
-                                    height: self.minimum_height
-                                    
-
-                                    MDCheckbox:
-                                        active: False
-                                        group: "h2_afectacion_group"
-                                        size_hint: None, None
-                                        size: dp(48), dp(48)
-                                        on_press: app.guardar_checkbox_h1_me2("Nulo")
-
-                                    MDLabel:
-                                        text: "Nulo"
-                                    
-                                    MDCheckbox:
-                                        active: False
-                                        group: "h2_afectacion_group"
-                                        size_hint: None, None
-                                        size: dp(48), dp(48)
-                                        on_press: app.guardar_checkbox_h1_me2("Bajo")
-
-                                    MDLabel:
-                                        text: "Bajo"
-
-                                    MDCheckbox:
-                                        active: False
-                                        group: "h2_afectacion_group"
-                                        size_hint: None, None
-                                        size: dp(48), dp(48)
-                                        on_press: app.guardar_checkbox_h1_me2("Medio")
-
-                                    MDLabel:
-                                        text: "Medio"
-
-                                    MDCheckbox:
-                                        active: False
-                                        group: "h2_afectacion_group"
-                                        size_hint: None, None
-                                        size: dp(48), dp(48)
-                                        on_press: app.guardar_checkbox_h1_me2("Alto")
-
-                                    MDLabel:
-                                        text: "Alto"
+                                
 
 
 
@@ -2610,7 +2602,57 @@ MDScreen:
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
 
+                                MDLabel:
+                                    halign: "left"
+                                    text: "Nivel de afectación:"
+                                    font_style: "H6"
+                                    size: self.size
 
+                                MDBoxLayout:
+                                    orientation: 'horizontal'
+                                    size_hint_y: None
+                                    height: self.minimum_height
+                                    
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "h3_afectacion_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_me3("Nulo")
+
+                                    MDLabel:
+                                        text: "Nulo"
+                                    
+                                    MDCheckbox:
+                                        active: False
+                                        group: "h3_afectacion_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_me3("Bajo")
+
+                                    MDLabel:
+                                        text: "Bajo"
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "h3_afectacion_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_me3("Medio")
+
+                                    MDLabel:
+                                        text: "Medio"
+
+                                    MDCheckbox:
+                                        active: False
+                                        group: "h3_afectacion_group"
+                                        size_hint: None, None
+                                        size: dp(48), dp(48)
+                                        on_press: app.guardar_checkbox_h1_me3("Alto")
+
+                                    MDLabel:
+                                        text: "Alto"
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -3249,57 +3291,7 @@ MDScreen:
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
 
-                                MDLabel:
-                                    halign: "left"
-                                    text: "Nivel de afectación:"
-                                    font_style: "H6"
-                                    size: self.size
-
-                                MDBoxLayout:
-                                    orientation: 'horizontal'
-                                    size_hint_y: None
-                                    height: self.minimum_height
-                                    
-
-                                    MDCheckbox:
-                                        active: False
-                                        group: "h3_afectacion_group"
-                                        size_hint: None, None
-                                        size: dp(48), dp(48)
-                                        on_press: app.guardar_checkbox_h1_me3("Nulo")
-
-                                    MDLabel:
-                                        text: "Nulo"
-                                    
-                                    MDCheckbox:
-                                        active: False
-                                        group: "h3_afectacion_group"
-                                        size_hint: None, None
-                                        size: dp(48), dp(48)
-                                        on_press: app.guardar_checkbox_h1_me3("Bajo")
-
-                                    MDLabel:
-                                        text: "Bajo"
-
-                                    MDCheckbox:
-                                        active: False
-                                        group: "h3_afectacion_group"
-                                        size_hint: None, None
-                                        size: dp(48), dp(48)
-                                        on_press: app.guardar_checkbox_h1_me3("Medio")
-
-                                    MDLabel:
-                                        text: "Medio"
-
-                                    MDCheckbox:
-                                        active: False
-                                        group: "h3_afectacion_group"
-                                        size_hint: None, None
-                                        size: dp(48), dp(48)
-                                        on_press: app.guardar_checkbox_h1_me3("Alto")
-
-                                    MDLabel:
-                                        text: "Alto"
+                                
 
 
 
