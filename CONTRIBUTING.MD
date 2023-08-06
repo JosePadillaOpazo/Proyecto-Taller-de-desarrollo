@@ -4,14 +4,14 @@
 
 ## Autores
 
-- [José Padilla](@JosePadillaOpazo) - ~~Dueño del proyecto~~ - jospadil@alumnos.ubiobio.cl
+- [José Padilla](@JosePadillaOpazo) -Dueño del proyecto - jospadil@alumnos.ubiobio.cl
 
 ## Estándar de Codificación
 
 ### Estilo de Codificación
 
 El estilo de código de este proyecto debe seguir las recomendaciones de los estándares:
-- ~~[PEP 8](https://peps.python.org/pep-0008/)~~
+- [PEP 8](https://peps.python.org/pep-0008/)
 
 
 ### Configuraciones para editores de código
@@ -31,7 +31,7 @@ Busca e instala [Editor Config](https://editorconfig.org/), como plugin para tu 
 
 ### Arquitectura del Sistema - Patrones de Diseño
 
-- ~~El proyecto se compone de: Codigo en lenguaje python y codigo en lenguaje kivy y kivyMD~~
+- El proyecto se compone de: Codigo en lenguaje python y codigo en lenguaje kivy y kivyMD
 
 ## Interacción con el repositorio
 
