@@ -79,7 +79,7 @@ MDScreen:
                                     hint_text: "Nombre de Proyecto:"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
-                                    
+                                    input_filter: lambda text, from_undo: text if all(c.isalnum() or c == ',' or c.isspace() for c in text) or from_undo else ""
 
                                 MDTextField:
                                     id: tipologia_vivienda
@@ -87,130 +87,137 @@ MDScreen:
                                     multiline: False
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
-                                    input_filter: lambda text, from_undo: text if all(c.isalnum() or c == ',' for c in text) else ""
+                                    input_filter: lambda text, from_undo: text if all(c.isalnum() or c == ',' or c.isspace() for c in text) or from_undo else ""
 
                                 MDTextField:
                                     id: direccion
                                     hint_text: "Dirección:"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
-                                    input_filter: lambda text, from_undo: text if all(c.isalnum() or c == ',' for c in text) else ""
+                                    input_filter: lambda text, from_undo: text if all(c.isalnum() or c == ',' or c.isspace() for c in text) or from_undo else ""
 
                                 MDTextField:
                                     id: etapa
                                     hint_text: "Etapa:"
-                                    input_filter: 'int'
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
+                                    
 
                                 MDTextField:
                                     id: superficie_vivienda
-                                    hint_text: "Superficie de Vivienda:"
-                                    input_filter: 'int'
+                                    hint_text: "Superficie de Vivienda: (m2)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDTextField:
                                     id: numero_pisos
                                     hint_text: "Número de Pisos:"
-                                    input_filter: 'int'
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDTextField:
                                     id: orientacion_fachada
                                     hint_text: "Orientación Fachada:"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
-                                    input_filter: lambda text, from_undo: text if text.isalpha() else ""
+                                    input_filter: lambda text, from_undo: text if all(c.isalnum() or c == ',' or c.isspace() for c in text) or from_undo else ""
 
                                 MDTextField:
                                     id: orientacion_acceso
                                     hint_text: "Orientación Acceso:"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
-                                    input_filter: lambda text, from_undo: text if text.isalpha() else ""
+                                    input_filter: lambda text, from_undo: text if all(c.isalnum() or c == ',' or c.isspace() for c in text) or from_undo else ""
 
                                 MDTextField:
                                     id: temp_exterior
-                                    hint_text: "Temperatura exterior:"
+                                    hint_text: "Temperatura exterior: (° Celsius)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDTextField:
                                     id: hum_exterior
-                                    hint_text: "Humedad exterior:"
+                                    hint_text: "Humedad exterior: (%)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDTextField:
                                     id: temp_interior
-                                    hint_text: "Temperatura interior:"
+                                    hint_text: "Temperatura interior: (° Celsius)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDTextField:
                                     id: hum_interior
-                                    hint_text: "Humedad interior:"
+                                    hint_text: "Humedad interior: (%)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDTextField:
                                     id: años_uso_vivienda
                                     hint_text: "Años de uso de la vivienda:"
-                                    input_filter: 'int'
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDTextField:
                                     id: nom_inspector
                                     hint_text: "Inspector CITEC UBB:"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: lambda text, from_undo: text if all(c.isalnum() or c == ',' or c.isspace() for c in text) or from_undo else ""
 
                                 MDTextField:
                                     id: ci_inspector
                                     hint_text: "RUT Inspector:"
-                                    helper_text: "Solo se permiten números (sin guión ni puntos)"
+                                    helper_text: "Solo se permiten números y la letra k (sin guión ni puntos)"
                                     helper_text_mode:"persistent"
-                                    input_filter: 'int'
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: lambda text, from_undo: text if all(c.isdigit() or c.lower() == 'k' for c in text) or from_undo else ""
+                                    max_text_length: 9
 
                                 MDTextField:
                                     id: num_recintos
                                     hint_text: "N° de Recintos vivienda:"
-                                    input_filter: 'int'
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDTextField:
                                     id: num_habitantes
                                     hint_text: "Total número de habitantes:"
-                                    input_filter: 'int'
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDTextField:
                                     id: num_adultos
                                     hint_text: "Adultos:"
-                                    input_filter: 'int'
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDTextField:
                                     id: num_niños
                                     hint_text: "Niños en edad escolar:"
-                                    input_filter: 'int'
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDTextField:
                                     id: num_adultos_may
                                     hint_text: "Adultos Mayores:"
-                                    input_filter: 'int'
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDTextField:
                                     id: obs_item_1
@@ -218,30 +225,35 @@ MDScreen:
                                     hint_text: "Observaciones Información General:"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: lambda text, from_undo: text if all(c.isalnum() or c == ',' or c.isspace() for c in text) or from_undo else ""
 
                                 MDTextField:
                                     id: ocup_dia
                                     hint_text: "Ocupación todo el día:"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDTextField:
                                     id: ocup_intermitente
                                     hint_text: "Ocupación intermitente:"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDTextField:
                                     id: dens_ocup_prev
                                     hint_text: "Densidad ocupacional prevista:"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
                                 
                                 MDTextField:
                                     id: dens_ocup_real                                    
                                     hint_text: "Densidad ocupacional real:"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
                                 
                                 MDTextField:
                                     id: obs_item_2
@@ -249,6 +261,7 @@ MDScreen:
                                     hint_text: "Observaciones Ocupación Vivienda:"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: lambda text, from_undo: text if all(c.isalnum() or c == ',' or c.isspace() for c in text) or from_undo else ""
 
                             
                             #Bock de Checkboxes
@@ -302,6 +315,7 @@ MDScreen:
                                     hint_text: "¿Cuántas y de qué tipo?"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: lambda text, from_undo: text if all(c.isalnum() or c == ',' or c.isspace() for c in text) or from_undo else ""
 
 
 
@@ -349,6 +363,7 @@ MDScreen:
                                     hint_text: "¿Cuántas y de qué tipo?"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: lambda text, from_undo: text if all(c.isalnum() or c == ',' or c.isspace() for c in text) or from_undo else ""
 
 
 
@@ -406,6 +421,7 @@ MDScreen:
                                     hint_text: "Nombre de la persona que recibió"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: lambda text, from_undo: text if all(c.isalnum() or c.isspace() for c in text) or from_undo else ""
                                     
 
 
@@ -553,40 +569,46 @@ MDScreen:
                                 
                                 MDTextField:
                                     id: h1_meA_perimetral
-                                    hint_text: "Muro Perimetral:"
+                                    hint_text: "Muro Perimetral: (m2)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
                                     
 
                                 MDTextField:
                                     id: h1_meA_interior
-                                    hint_text: "Muro Interior:"
+                                    hint_text: "Muro Interior: (m2)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
                                 
                                 MDTextField:
                                     id: h1_meA_sup_muro
-                                    hint_text: "Superficie muro:"
+                                    hint_text: "Superficie muro: (m2)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
                                 
                                 MDTextField:
                                     id: h1_meA_sup_ven
-                                    hint_text: "Superficie ventana:"
+                                    hint_text: "Superficie ventana: (m2)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDTextField:
                                     id: h1_meA_tie_calef
-                                    hint_text: "¿Cuánto tiempo calefacciona?"
+                                    hint_text: "¿Cuánto tiempo calefacciona? (en horas)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDTextField:
                                     id: total_sup_afec
-                                    hint_text: "Total superficie de muro afectada:"
+                                    hint_text: "Total superficie de muro afectada: (m2)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDLabel:
                                     halign: "left"
@@ -747,6 +769,7 @@ MDScreen:
                                     hint_text: "¿Cuál?"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: lambda text, from_undo: text if all(c.isalnum() or c == ',' or c.isspace() for c in text) or from_undo else ""
 
 
                             MDLabel:
@@ -786,6 +809,7 @@ MDScreen:
                                     hint_text: "¿Cuál?"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: lambda text, from_undo: text if all(c.isalnum() or c == ',' or c.isspace() for c in text) or from_undo else ""
 
 
 
@@ -843,9 +867,10 @@ MDScreen:
 
                                     MDTextField:
                                         id: sup_afe_esq_muro
-                                        hint_text: "Superficie afectada:"
+                                        hint_text: "Superficie afectada: (m2)"
                                         hint_text_color_normal: "white"
                                         line_color_normal: "white"
+                                        input_filter: 'int'
 
 
 
@@ -889,9 +914,10 @@ MDScreen:
 
                                     MDTextField:
                                         id: sup_afe_cie_muro
-                                        hint_text: "Superficie afectada:"
+                                        hint_text: "Superficie afectada: (m2)"
                                         hint_text_color_normal: "white"
                                         line_color_normal: "white"
+                                        input_filter: 'int'
 
                             MDBoxLayout:
                                 orientation: 'vertical'
@@ -932,9 +958,10 @@ MDScreen:
 
                                     MDTextField:
                                         id: sup_afe_pis_muro
-                                        hint_text: "Superficie afectada:"
+                                        hint_text: "Superficie afectada: (m2)"
                                         hint_text_color_normal: "white"
                                         line_color_normal: "white"
+                                        input_filter: 'int'
 
                             MDBoxLayout:
                                 orientation: 'vertical'
@@ -975,9 +1002,10 @@ MDScreen:
 
                                     MDTextField:
                                         id: sup_afe_ras_ven
-                                        hint_text: "Superficie afectada:"
+                                        hint_text: "Superficie afectada: (m2)"
                                         hint_text_color_normal: "white"
                                         line_color_normal: "white"
+                                        input_filter: 'int'
 
                             MDBoxLayout:
                                 orientation: 'vertical'
@@ -1018,9 +1046,10 @@ MDScreen:
 
                                     MDTextField:
                                         id: sup_afe_baj_ven
-                                        hint_text: "Superficie afectada:"
+                                        hint_text: "Superficie afectada: (m2)"
                                         hint_text_color_normal: "white"
                                         line_color_normal: "white"
+                                        input_filter: 'int'
 
                             MDBoxLayout:
                                 orientation: 'vertical'
@@ -1061,9 +1090,10 @@ MDScreen:
 
                                     MDTextField:
                                         id: sup_afe_ar_cen
-                                        hint_text: "Superficie afectada:"
+                                        hint_text: "Superficie afectada: (m2)"
                                         hint_text_color_normal: "white"
                                         line_color_normal: "white"
+                                        input_filter: 'int'
 
                             MDBoxLayout:
                                 orientation: 'vertical'
@@ -1104,9 +1134,10 @@ MDScreen:
 
                                     MDTextField:
                                         id: sup_afe_pun_loc
-                                        hint_text: "Superficie afectada:"
+                                        hint_text: "Superficie afectada: (m2)"
                                         hint_text_color_normal: "white"
                                         line_color_normal: "white"
+                                        input_filter: 'int'
 
 
 
@@ -1163,9 +1194,10 @@ MDScreen:
 
                                     MDTextField:
                                         id: d_sup_afe_esq_muro
-                                        hint_text: "Superficie afectada:"
+                                        hint_text: "Superficie afectada: (m2)"
                                         hint_text_color_normal: "white"
                                         line_color_normal: "white"
+                                        input_filter: 'int'
 
 
 
@@ -1209,9 +1241,10 @@ MDScreen:
 
                                     MDTextField:
                                         id: d_sup_afe_cie_muro
-                                        hint_text: "Superficie afectada:"
+                                        hint_text: "Superficie afectada: (m2)"
                                         hint_text_color_normal: "white"
                                         line_color_normal: "white"
+                                        input_filter: 'int'
 
                             MDBoxLayout:
                                 orientation: 'vertical'
@@ -1252,9 +1285,10 @@ MDScreen:
 
                                     MDTextField:
                                         id: d_sup_afe_pis_muro
-                                        hint_text: "Superficie afectada:"
+                                        hint_text: "Superficie afectada: (m2)"
                                         hint_text_color_normal: "white"
                                         line_color_normal: "white"
+                                        input_filter: 'int'
 
                             MDBoxLayout:
                                 orientation: 'vertical'
@@ -1295,9 +1329,10 @@ MDScreen:
 
                                     MDTextField:
                                         id: d_sup_afe_ras_ven
-                                        hint_text: "Superficie afectada:"
+                                        hint_text: "Superficie afectada: (m2)"
                                         hint_text_color_normal: "white"
                                         line_color_normal: "white"
+                                        input_filter: 'int'
 
                             MDBoxLayout:
                                 orientation: 'vertical'
@@ -1338,9 +1373,10 @@ MDScreen:
 
                                     MDTextField:
                                         id: d_sup_afe_baj_ven
-                                        hint_text: "Superficie afectada:"
+                                        hint_text: "Superficie afectada: (m2)"
                                         hint_text_color_normal: "white"
                                         line_color_normal: "white"
+                                        input_filter: 'int'
 
                             MDBoxLayout:
                                 orientation: 'vertical'
@@ -1381,9 +1417,10 @@ MDScreen:
 
                                     MDTextField:
                                         id: d_sup_afe_ar_cen
-                                        hint_text: "Superficie afectada:"
+                                        hint_text: "Superficie afectada: (m2)"
                                         hint_text_color_normal: "white"
                                         line_color_normal: "white"
+                                        input_filter: 'int'
 
 
 
@@ -1426,9 +1463,10 @@ MDScreen:
 
                                     MDTextField:
                                         id: d_sup_afe_pun_loc
-                                        hint_text: "Superficie afectada:"
+                                        hint_text: "Superficie afectada: (m2)"
                                         hint_text_color_normal: "white"
                                         line_color_normal: "white"
+                                        input_filter: 'int'
 
 
 
@@ -1732,6 +1770,7 @@ MDScreen:
                                     hint_text: "Otro ¿cuál?"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: lambda text, from_undo: text if all(c.isalnum() or c == ',' or c.isspace() for c in text) or from_undo else ""
 
 
 
@@ -1784,33 +1823,38 @@ MDScreen:
 
                                 MDTextField:
                                     id: h1_me2_m_perimetral
-                                    hint_text: "Muro Perimetral:"
+                                    hint_text: "Muro Perimetral: (m2)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
                                     
                                 MDTextField:
                                     id: h1_me2_m_interior
-                                    hint_text: "Muro Interior:"
+                                    hint_text: "Muro Interior: (m2)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
                                 
                                 MDTextField:
                                     id: h1_me2_sup_mur
-                                    hint_text: "Superficie muro:"
+                                    hint_text: "Superficie muro: (m2)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
                                 
                                 MDTextField:
                                     id: h1_me2_sup_ven
-                                    hint_text: "Superficie ventana:"
+                                    hint_text: "Superficie ventana: (m2)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDTextField:
                                     id: total_sup_afec_h2
-                                    hint_text: "Total superficie de muro afectada:"
+                                    hint_text: "Total superficie de muro afectada: (m2)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDLabel:
                                     halign: "left"
@@ -1914,9 +1958,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: sup_afe_esq_muro_h2
-                                            hint_text: "superficie afectada:"
+                                            hint_text: "superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
 
 
@@ -1960,9 +2005,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: sup_afe_cie_muro_h2
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -2003,9 +2049,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: sup_afe_pis_muro_h2
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -2046,9 +2093,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: sup_afe_ras_ven_h2
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -2089,9 +2137,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: sup_afe_baj_ven_h2
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -2132,9 +2181,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: sup_afe_ar_cen_h2
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -2175,9 +2225,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: sup_afe_pun_loc_h2
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
 
 
@@ -2234,9 +2285,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: d_sup_afe_esq_muro_h2
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
 
 
@@ -2280,9 +2332,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: d_sup_afe_cie_muro_h2
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -2323,9 +2376,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: d_sup_afe_pis_muro_h2
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -2366,9 +2420,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: d_sup_afe_ras_ven_h2
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -2409,9 +2464,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: d_sup_afe_baj_ven_h2
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -2452,9 +2508,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: d_sup_afe_ar_cen_h2
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
 
 
@@ -2497,9 +2554,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: d_sup_afe_pun_loc_h2
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 
 
@@ -2574,33 +2632,38 @@ MDScreen:
 
                                 MDTextField:
                                     id: h1_me3_m_perimetral
-                                    hint_text: "Muro Perimetral:"
+                                    hint_text: "Muro Perimetral: (m2)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
                                     
                                 MDTextField:
                                     id: h1_me3_m_interior
-                                    hint_text: "Muro Interior:"
+                                    hint_text: "Muro Interior: (m2)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
                                 
                                 MDTextField:
                                     id: h1_me3_sup_mur
-                                    hint_text: "Superficie muro:"
+                                    hint_text: "Superficie muro: (m2)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
                                 
                                 MDTextField:
                                     id: h1_me3_sup_ven
-                                    hint_text: "Superficie ventana:"
+                                    hint_text: "Superficie ventana: (m2)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDTextField:
                                     id: total_sup_afec_h3
-                                    hint_text: "Total superficie de muro afectada:"
+                                    hint_text: "Total superficie de muro afectada: (m2)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDLabel:
                                     halign: "left"
@@ -2704,9 +2767,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: sup_afe_esq_muro_h3
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
 
 
@@ -2750,9 +2814,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: sup_afe_cie_muro_h3
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -2793,9 +2858,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: sup_afe_pis_muro_h3
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -2836,9 +2902,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: sup_afe_ras_ven_h3
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -2879,9 +2946,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: sup_afe_baj_ven_h3
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -2922,9 +2990,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: sup_afe_ar_cen_h3
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -2965,9 +3034,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: sup_afe_pun_loc_h3
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
 
 
@@ -3024,9 +3094,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: d_sup_afe_esq_muro_h3
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
 
 
@@ -3070,9 +3141,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: d_sup_afe_cie_muro_h3
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -3113,9 +3185,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: d_sup_afe_pis_muro_h3
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -3156,9 +3229,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: d_sup_afe_ras_ven_h3
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -3199,9 +3273,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: d_sup_afe_baj_ven_h3
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -3242,9 +3317,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: d_sup_afe_ar_cen_h3
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
 
 
@@ -3287,9 +3363,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: d_sup_afe_pun_loc_h3
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 
 
@@ -3353,27 +3430,31 @@ MDScreen:
 
                                 MDTextField:
                                     id: H1_Sup_piso
-                                    hint_text: "Superficie piso:"
+                                    hint_text: "Superficie piso: (m2)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
                                 
                                 MDTextField:
                                     id: H1_total_sup_piso_afec
-                                    hint_text: "Total superficie de piso afectada:"
+                                    hint_text: "Total superficie de piso afectada: (m2)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
                                 MDTextField:
                                     id: H1_Sup_cielo
-                                    hint_text: "Superficie cielo:"
+                                    hint_text: "Superficie cielo: (m2)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
-                                
+                                    input_filter: 'int'
+
                                 MDTextField:
                                     id: H1_total_sup_cielo_afec
-                                    hint_text: "Total superficie de cielo afectada:"
+                                    hint_text: "Total superficie de cielo afectada: (m2)"
                                     hint_text_color_normal: "white"
                                     line_color_normal: "white"
+                                    input_filter: 'int'
 
 
 
@@ -3543,9 +3624,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: h1_per_piso_sup_afe
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -3586,9 +3668,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: h1_ar_cen_piso_sup_afe
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 MDBoxLayout:
                                     orientation: 'vertical'
@@ -3629,9 +3712,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: h1_pun_loc_piso_sup_afe
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                     
                                 #Daño Piso
@@ -3685,9 +3769,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: h1_d_per_piso_sup_afe
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
 
 
@@ -3733,9 +3818,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: h1_d_ar_cen_piso_sup_afe
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
 
 
@@ -3778,9 +3864,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: h1_d_pun_loc_piso_sup_afe
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
 
                                 
@@ -3839,9 +3926,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: h1_per_cielo_sup_afe
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
 
 
@@ -3885,9 +3973,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: h1_ar_cen_cielo_sup_afe
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
 
 
@@ -3930,9 +4019,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: h1_pun_loc_cielo_sup_afe
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
                                 #Daño cielo        
                                 MDBoxLayout:
@@ -3985,9 +4075,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: h1_d_per_cielo_sup_afe
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
 
 
@@ -4031,9 +4122,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: h1_d_ar_cen_cielo_sup_afe
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
 
 
@@ -4076,9 +4168,10 @@ MDScreen:
 
                                         MDTextField:
                                             id: h1_d_pun_loc_cielo_sup_afe
-                                            hint_text: "Superficie afectada:"
+                                            hint_text: "Superficie afectada: (m2)"
                                             hint_text_color_normal: "white"
                                             line_color_normal: "white"
+                                            input_filter: 'int'
 
 
 
@@ -4164,6 +4257,7 @@ MDScreen:
                     id: nombre_habitacion1
                     mode: "rectangle"
                     hint_text: "Habitación 1"
+                    input_filter: lambda text, from_undo: text if all(c.isalpha() or c.isspace() for c in text) or from_undo else ""
 
                 DrawerClickableItem:
                     icon: "file-outline"

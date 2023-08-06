@@ -46,12 +46,11 @@ class CitecUbbApp(MDApp):
         
         self.guardar(nombre_ingresado)
         
-        #self.root.clear_widgets()
-        #self.root = Builder.load_file('main.kv')
-        #self.stop()
-        #CitecUbbApp().run()
+        self.root.clear_widgets()
+        self.root = Builder.load_file('main.kv')
+        self.stop()
+        CitecUbbApp().run()
         dialog.dismiss()
-
 
 
     #Eliminar Habitacion con sus hojas
@@ -86,9 +85,7 @@ class CitecUbbApp(MDApp):
             self.h1_me3=0
             self.h1_pi_cie=0
             
-        self.redirigir_pantalla_dialogo("info_general", dialog_h) 
-
-
+        self.redirigir_pantalla_dialogo("info_general", dialog_h)
 
 
 
